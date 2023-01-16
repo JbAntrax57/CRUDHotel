@@ -81,7 +81,7 @@
                     <table class="table align-middle">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">Folio</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Edad</th>
                                 <th scope="col">Signo</th>
