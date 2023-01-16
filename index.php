@@ -83,8 +83,8 @@
                             <tr>
                                 <th scope="col">Folio</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Edad</th>
-                                <th scope="col">Signo</th>
+                                <th scope="col">Fecha Entrada</th>
+                                <th scope="col">Fecha Salida</th>
                                 <th scope="col" colspan="2">Opciones</th>
                             </tr>
                         </thead>
@@ -155,6 +155,20 @@
                     <div class="mb-3">
                         <label class="form-label">Numero de Personas: </label>
                         <input type="number" class="form-control" name="txtSigno" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Deposito: </label>
+                        <input type="number" class="form-control" name="txtDep" autofocus required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputState">Tipo Pago</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Efectivo</option>
+                            <option selected>Tarjeta</option>
+                            <option selected>Transferencia</option>
+                            <option selected>Credito</option>
+                            <option selected>Cortesia</option>
+                        </select>
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="oculto" value="1">
