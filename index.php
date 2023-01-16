@@ -100,6 +100,7 @@
                                 <td><?php echo $dato->edad; ?></td>
                                 <td><?php echo $dato->signo; ?></td>
                                 <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a class="text-success" href="vista.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-eye-fill"></i></a></td>
                                 <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td>
                             </tr>
 
