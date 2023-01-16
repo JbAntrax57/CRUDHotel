@@ -124,12 +124,36 @@
                         <input type="text" class="form-control" name="txtNombre" autofocus required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Edad: </label>
-                        <input type="number" class="form-control" name="txtEdad" autofocus required>
+                        <label class="form-label">Fecha DEPS: </label>
+                        <input type="date" class="form-control" name="txtEdad" autofocus required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Signo: </label>
+                        <label class="form-label">Telefono: </label>
                         <input type="text" class="form-control" name="txtSigno" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Correo Electronico: </label>
+                        <input type="email" class="form-control" name="txtSigno" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Lugar Residencia: </label>
+                        <input type="text" class="form-control" name="txtSigno" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha Llegada: </label>
+                        <input type="date" class="form-control" name="txtEdad" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha Salida: </label>
+                        <input type="date" class="form-control" name="txtEdad" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Habitacion: </label>
+                        <input type="text" class="form-control" name="txtSigno" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Numero de Personas: </label>
+                        <input type="number" class="form-control" name="txtSigno" autofocus required>
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="oculto" value="1">
