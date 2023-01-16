@@ -1,7 +1,7 @@
 <footer class="container-fluid bg-dark fixed-bottom">
         <div class="row">
             <div class="col-md text-light text-center py-3">
-                Desarrollado por La PEKEREKE
+                Desarrollado por La PEKEREKE y la soberbia
             </div>
         </div>
     </footer>
