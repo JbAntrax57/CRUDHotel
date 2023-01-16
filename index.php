@@ -75,7 +75,7 @@
             <!-- fin alerta -->
             <div class="card">
                 <div class="card-header">
-                    Lista de personas
+                    Lista de Reservaciones
                 </div>
                 <div class="p-4">
                     <table class="table align-middle">
@@ -116,7 +116,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    Ingresar datos:
+                    Ingresar Reservacion:
                 </div>
                 <form class="p-4" method="POST" action="registrar.php">
                     <div class="mb-3">
