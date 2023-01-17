@@ -14,15 +14,6 @@
     
   </head>
   <style>
-	.logo {
-    margin: auto;
-    font-size: 10px;
-    
-    padding: 7px 10px;
-    border-radius: 50% 50%;
-    color: #000000b3;
-    
-}
 img {
   border: 1px solid #ddd;
   border-radius: 100%;
@@ -31,19 +22,41 @@ img {
   }
 
 </style>
-  <body>
+  <!-- <body>
       <div class="container-fluid bg-info">
           <div class="row">
               <div class="col-md">
                 
                   <header class="py-3">
                     <div class="logo">
-                    <img src="img/logohotel.png">
+                    
                 </div> 
             </div>
                   <h3 class="text-left">Sistema de Reservaciones Hotel Jardin de Jaluco</h3>
                   </header>
               </div>
           </div>
-      </div>
+      </div> -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand text-white" href="index.php?">Inicio <i class="bi bi-house"></i></a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="reservacion.php">Registro <i class="bi bi-pencil-square"></i><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="vista.php?">Reservaciones <i class="bi bi-card-checklist"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled text-white" href="#">PEKEREKE <i class="bi bi-geo-fill"></i></a>
+      </li>
+    </ul>
+    
+  </div>
+  <h3 class="text-center">Sistema de Reservaciones Hotel Jardin de Jaluco</h3><img src="img/logohotel.png">
+</nav>
     
