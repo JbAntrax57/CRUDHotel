@@ -1,7 +1,7 @@
 <?php 
 $contrasena = "";
 $usuario = "root";
-$nombre_bd = "bdcrud";
+$nombre_bd = "hotel";
 
 try {
 	$bd = new PDO (

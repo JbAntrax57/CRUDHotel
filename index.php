@@ -2,8 +2,8 @@
 
 <?php
     include_once "model/conexion.php";
-    $sentencia = $bd -> query("select * from persona");
-    $persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $sentencia = $bd -> query("select * from reservaciones");
+    $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
 
@@ -91,16 +91,16 @@
                         <tbody>
                             
                             <?php 
-                                foreach($persona as $dato){ 
+                                foreach($reservacion as $dato){ 
                             ?>
 
                             <tr>
-                                <td scope="row"><?php echo $dato->codigo; ?></td>
+                                <td scope="row"><?php echo $dato->no_folio; ?></td>
                                 <td><?php echo $dato->nombre; ?></td>
-                                <td><?php echo $dato->edad; ?></td>
-                                <td><?php echo $dato->signo; ?></td>
-                                <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a class="text-success" href="vista.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-eye-fill"></i></a></td>
+                                <td><?php echo $dato->email; ?></td>
+                                <td><?php echo $dato->lugar_residencia; ?></td>
+                                <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->no_folio; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a class="text-success" href="vista.php?codigo=<?php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>
                                 <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td>
                             </tr>
 
