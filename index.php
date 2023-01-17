@@ -100,13 +100,13 @@
                             ?>
 
                             <tr>
-                                <td scope="row"><?php echo $dato->no_folio; ?></td>
+                                <td scope="row"><?php echo $dato->idReservaciones; ?></td>
                                 <td><?php echo $dato->nombre; ?></td>
-                                <td><?php echo $dato->email; ?></td>
-                                <td><?php echo $dato->lugar_residencia; ?></td>
+                                <td><?php echo $dato->fecha_llegada; ?></td>
+                                <td><?php echo $dato->fecha_salida; ?></td>
                                 <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->no_folio; ?>"><i class="bi bi-pencil-square"></i></a></td>
                                 <td><a class="text-success" href="vista.php?codigo=<?php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>
-                                <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td>
+                                <!-- <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td> -->
                             </tr>
 
                             <?php 
