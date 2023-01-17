@@ -163,11 +163,12 @@
                     <div class="form-group mb-3">
                         <label for="inputState">Tipo Pago</label>
                         <select id="inputState" class="form-control">
-                            <option selected>Efectivo</option>
-                            <option selected>Tarjeta</option>
-                            <option selected>Transferencia</option>
-                            <option selected>Credito</option>
-                            <option selected>Cortesia</option>
+                            <option selected>Seleccionar...</option>
+                            <option >Efectivo</option>
+                            <option >Tarjeta</option>
+                            <option >Transferencia</option>
+                            <option >Credito</option>
+                            <option >Cortesia</option>
                         </select>
                     </div>
                     <div class="d-grid">
