@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-01-2023 a las 20:49:24
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 17-01-2023 a las 02:06:23
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `hjj`
+-- Base de datos: `hotel`
 --
 
 -- --------------------------------------------------------
@@ -48,6 +48,13 @@ CREATE TABLE `habitaciones` (
   `planta` tinyint(1) NOT NULL,
   `disponible` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `habitaciones`
+--
+
+INSERT INTO `habitaciones` (`id`, `tipo_id`, `nom_habitacion`, `planta`, `disponible`) VALUES
+(3, 1, 'Habitacion 1', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -115,6 +122,13 @@ CREATE TABLE `reservaciones` (
   `no_folio` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `reservaciones`
+--
+
+INSERT INTO `reservaciones` (`idReservaciones`, `nombre`, `fecha_deps`, `num_telefono`, `email`, `lugar_residencia`, `fecha_llegada`, `fecha_salida`, `habitacion_id`, `no_personas`, `deposito`, `fecha_reservacion`, `tipo_pago`, `no_folio`) VALUES
+(17, 'admin', '2023-01-16', 111111111, 'admin@hotmail.com', ' barra', '2023-01-16', '2023-01-17', 3, 2, 100, '2023-01-16', 'efectivo', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +139,13 @@ CREATE TABLE `tipohabitaciones` (
   `id` int(10) NOT NULL,
   `tipo_habitacion` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipohabitaciones`
+--
+
+INSERT INTO `tipohabitaciones` (`id`, `tipo_habitacion`) VALUES
+(1, '2 Matrimoniales');
 
 -- --------------------------------------------------------
 
@@ -226,7 +247,7 @@ ALTER TABLE `gastos`
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
@@ -250,13 +271,13 @@ ALTER TABLE `recepcion`
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `idReservaciones` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReservaciones` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `tipohabitaciones`
 --
 ALTER TABLE `tipohabitaciones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -279,33 +300,28 @@ ALTER TABLE `gastos`
 -- Filtros para la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  ADD CONSTRAINT `habitaciones_ibfk_1` FOREIGN KEY (`id`) REFERENCES `preciohabitacion` (`habitacion_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `habitaciones_ibfk_2` FOREIGN KEY (`tipo_id`) REFERENCES `tipohabitaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ingresos`
 --
 ALTER TABLE `ingresos`
   ADD CONSTRAINT `ingresos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `recepcion` (`id_ingresos`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ingresos_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ingresos_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ingresos_ibfk_3` FOREIGN KEY (`reservacion_id`) REFERENCES `reservaciones` (`idReservaciones`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `preciohabitacion`
 --
 ALTER TABLE `preciohabitacion`
-  ADD CONSTRAINT `preciohabitacion_ibfk_1` FOREIGN KEY (`tipo_id`) REFERENCES `tipohabitaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `preciohabitacion_ibfk_1` FOREIGN KEY (`tipo_id`) REFERENCES `tipohabitaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `preciohabitacion_ibfk_2` FOREIGN KEY (`habitacion_id`) REFERENCES `habitaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  ADD CONSTRAINT `reservaciones_ibfk_1` FOREIGN KEY (`habitacion_id`) REFERENCES `habitaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reservaciones_ibfk_2` FOREIGN KEY (`idReservaciones`) REFERENCES `ingresos` (`reservacion_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tipohabitaciones`
---
-ALTER TABLE `tipohabitaciones`
-  ADD CONSTRAINT `tipohabitaciones_ibfk_1` FOREIGN KEY (`id`) REFERENCES `habitaciones` (`tipo_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `reservaciones_ibfk_3` FOREIGN KEY (`habitacion_id`) REFERENCES `habitaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
