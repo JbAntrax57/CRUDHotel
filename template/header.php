@@ -57,6 +57,6 @@ img {
     </ul>
     
   </div>
-  <h3 class="text-center">Sistema de Reservaciones Hotel Jardin de Jaluco</h3><img src="img/logohotel.png">
+  <img src="img/logohotel.png"><h3 class="text-center text-white">Sistema de Reservaciones Hotel Jardin de Jaluco</h3>
 </nav>
     
