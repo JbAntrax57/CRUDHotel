@@ -82,13 +82,23 @@
                     Lista de Reservaciones
                 </div>
                 
-                <div class="p-10">
+                <div class="p-14">
                     <table class="table align-middle">
                         <thead>
                             <tr>
+                                <th scope="col">ID Reservacion</th>
                                 <th scope="col">N° Folio</th>
-                                <th scope="col">Informacion</th>
-                                <th scope="col">Detalles</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Fecha DEPS</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Residencia</th>
+                                <th scope="col">Llegada</th>
+                                <th scope="col">Salida</th>
+                                <th scope="col">Habitacion</th>
+                                <th scope="col">N° Personas</th>
+                                <th scope="col">Deposito</th>
+                                <th scope="col">Fecha Reservacion</th>
+                                <th scope="col">Tipo Pago</th>
                                 <th scope="col" colspan="2">Opciones</th>
                             </tr>
                         </thead>
