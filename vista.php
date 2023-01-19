@@ -6,11 +6,11 @@
     $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
-<nav class="navbar navbar-dark bg-primary">
-</nav>
+<!-- <nav class="navbar navbar-dark bg-primary">
+</nav> -->
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-7">
+        <div class="col-md-10">
             <!-- inicio alerta -->
             <?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta'){
@@ -76,14 +76,14 @@
             <!-- fin alerta -->
             <input style="margin-left:73%; border-radius:0%" type="button" onclick = "location='reservacion.php'" value = "Agregar Reservacion" class = "btn btn-primary" ></input>
      
-            <div class="card">
+            <div class="card col-sm-25">
                 
                 <div class="card-header">
                     Lista de Reservaciones
                 </div>
                 
-                <div class="p-14">
-                    <table class="table align-middle">
+                <div class="mx-auto ">
+                    <table class="table-responsive-xl">
                         <thead>
                             <tr>
                                 <th scope="col">ID Reservacion</th>
@@ -108,7 +108,7 @@
                                 foreach($reservacion as $dato){ 
                             ?>
 
-<tr>
+                             <tr>
                                 <td scope="row"><?php echo $dato->idReservaciones; ?></td>
                                 <td scope="row"><?php echo $dato->no_folio; ?></td>
                                 <td><?php echo $dato->nombre; ?></td>
