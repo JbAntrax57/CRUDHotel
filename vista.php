@@ -10,7 +10,7 @@
 </nav>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-7">
+        <div class="col-md-15">
             <!-- inicio alerta -->
             <?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta'){
@@ -82,8 +82,8 @@
                     Lista de Reservaciones
                 </div>
                 
-                <div class="p-14">
-                    <table class="table align-middle">
+                <div class="mx-auto">
+                    <table class="table align-middle table-responsive-xl " >
                         <thead>
                             <tr>
                                 <th scope="col">ID Reservacion</th>

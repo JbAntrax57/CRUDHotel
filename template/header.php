@@ -14,7 +14,13 @@
     
   </head>
   <style>
-img {
+.img {
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  padding: 5px;
+  width: 66px;
+  }
+  image {
   border: 1px solid #ddd;
   border-radius: 100%;
   padding: 5px;
@@ -57,6 +63,6 @@ img {
     </ul>
     
   </div>
-  <img src="img/logohotel.png"><h3 class="text-center text-white">Sistema de Reservaciones Hotel Jardin de Jaluco</h3>
+  <img src="img/logohotel.png"><h3 class="text-center text-white" >Sistema de Reservaciones Hotel Jardin de Jaluco</h3>
 </nav>
     
