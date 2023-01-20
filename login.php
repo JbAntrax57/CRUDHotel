@@ -25,18 +25,18 @@
 </style>
 <body>  
     <div id = "frm">  
-        <h1>Login</h1>  
+        <h1>Bienvenido al Sistema</h1>  
         <form name="f1" action = "acceso.php" onsubmit = "return validation()" method = "POST">  
             <p>  
-                <label> UserName: </label>  
+                <label> Nombre de Usuario: </label>  
                 <input type = "text" id ="user" name  = "user" />  
             </p>  
             <p>  
-                <label> Password: </label>  
+                <label> Contraseña: </label>  
                 <input type = "password" id ="pass" name  = "pass" />  
             </p>  
             <p>     
-                <input type =  "submit" id = "btn" value = "Login" />  
+                <input type =  "submit" id = "btn" value = "Entrar" />  
             </p>  
         </form>  
     </div>  

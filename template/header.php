@@ -26,6 +26,12 @@
   padding: 5px;
   width: 66px;
   }
+  .botonl{
+border-radius:100%;
+
+
+
+  }
 
 </style>
   <!-- <body>
@@ -52,14 +58,14 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link text-white" href="reservacion.php">Registro <i class="bi bi-pencil-square"></i><span class="sr-only">(current)</span></a>
+        <a class="nav-link text-white" href="reservacion.php">Registro <i class="bi bi-pencil-square"></i><span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="vista.php?">Reservaciones <i class="bi bi-card-checklist"></i></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled text-white" href="#">PEKEREKE <i class="bi bi-geo-fill"></i></a>
-      </li>
+      <li class="nav-item float-right text-red">      
+      <a class="btn btn-outline-danger botonl" href="login.php" role="button"><i class="bi bi-power"></i></a>    
+    </li>
     </ul>
     
   </div>
