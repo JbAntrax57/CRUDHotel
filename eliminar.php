@@ -7,7 +7,7 @@
     include 'model/conexion.php';
     $codigo = $_GET['codigo'];
 
-    $sentencia = $bd->prepare("DELETE FROM persona where codigo = ?;");
+    $sentencia = $bd->prepare("DELETE FROM Reservaciones where idReservaciones = ?;");
     $resultado = $sentencia->execute([$codigo]);
 
     if ($resultado === TRUE) {

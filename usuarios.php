@@ -2,8 +2,8 @@
 
 <?php
     include_once "model/conexion.php";
-    $sentencia = $bd -> query("select * from reservaciones");
-    $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $sentencia = $bd -> query("select * from usuario");
+    $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
 <!-- <nav class="navbar navbar-dark bg-primary">
@@ -86,46 +86,32 @@
                     <table class="table align-middle table-responsive-xl " >
                         <thead>
                             <tr>
-                                <th scope="col">ID Reservacion</th>
-                                <th scope="col">N° Folio</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Fecha DEPS</th>
+                                <th scope="col">Turno</th>
+                                <th scope="col">Direccion</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Telefono</th>
-                                <th scope="col">Residencia</th>
-                                <th scope="col">Llegada</th>
-                                <th scope="col">Salida</th>
-                                <th scope="col">Habitacion</th>
-                                <th scope="col">N° Personas</th>
-                                <th scope="col">Deposito</th>
-                                <th scope="col">Fecha Reservacion</th>
-                                <th scope="col">Tipo Pago</th>
-                                <th scope="col" colspan="2">Opciones</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
                             
                             <?php 
-                                foreach($reservacion as $dato){ 
+                                foreach($usuario as $dato){ 
                             ?>
 
                              <tr>
-                                <td scope="row"><?php echo $dato->idReservaciones; ?></td>
-                                <td scope="row"><?php echo $dato->no_folio; ?></td>
+                                
                                 <td><?php echo $dato->nombre; ?></td>
-                                <td><?php echo $dato->fecha_deps; ?></td>
-                                <td><?php echo $dato->num_telefono; ?></td>
-                                <td><?php echo $dato->lugar_residencia; ?></td>
-                                <td><?php echo $dato->fecha_llegada; ?></td>
-                                <td><?php echo $dato->fecha_salida; ?></td>
-                                <td><?php echo $dato->habitacion_id; ?></td>
-                                <td><?php echo $dato->no_personas; ?></td>
-                                <td><?php echo $dato->deposito; ?></td>
-                                <td><?php echo $dato->fecha_reservacion; ?></td>
-                                <td><?php echo $dato->tipo_pago; ?></td>
-                                <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->idReservaciones; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->idReservaciones; ?>"><i class="bi bi-trash"></i></a></td>
+                                <td><?php echo $dato->telefono; ?></td>                 
+                                <td><?php echo $dato->email; ?></td>
+                                <td><?php echo $dato->direccion; ?></td>
+                                <td><?php echo $dato->turno; ?></td>
+                                
+                                <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td>
                                <!-- <td><a class="text-success" href="vista.php?codigo=<?//php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>-->
-                                <!-- <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->idReservaciones; ?>"><i class="bi bi-trash"></i></a></td> -->
+                                <!-- <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td> -->
                             </tr>
 
                             <?php 
