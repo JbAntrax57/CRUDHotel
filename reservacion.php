@@ -1,8 +1,8 @@
 <?php include 'template/header.php' ?>
 <?php
     include_once "model/conexion.php";
-    $sentencia = $bd -> query("select * from reservaciones");
-    $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $sentencia = $bd -> query("select * from habitaciones where disponible = 0");
+    $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
 <body>
@@ -103,7 +103,15 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Habitacion: </label>
-                        <input type="text" class="form-control" name="datoHabitacion" autofocus required>
+                        <select id="inputState" class="form-control" name="datoHabitacion">
+                            <?php 
+                                foreach ($habitaciones as $habitacion) { 
+                            ?> 
+                                <option value="<?php  echo $habitacion->nom_habitacion; ?>" <?php echo isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
+                            <?php 
+                                }
+                            ?> 
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Numero de Personas: </label>
