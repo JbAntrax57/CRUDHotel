@@ -63,9 +63,13 @@ border-radius:100%;
       <li class="nav-item">
         <a class="nav-link text-white" href="vista.php?">Reservaciones <i class="bi bi-card-checklist"></i></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="usuarios.php?">Usuarios <i class="bi bi-person-circle"></i></a>
+      </li>
       <li class="nav-item float-right text-red">      
       <a class="btn btn-outline-danger botonl" href="login.php" role="button"><i class="bi bi-power"></i></a>    
     </li>
+    
     </ul>
     
   </div>

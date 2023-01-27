@@ -74,8 +74,8 @@
             ?> 
 
             <!-- fin alerta -->
-            <input style="margin-left:73%; border-radius:0%" type="button" onclick = "location='reservacion.php'" value = "Agregar Reservacion" class = "btn btn-primary" ></input>
-     
+            <input style="margin-left:73%; border-radius:0%" type="button" onclick = "location='agregarUsuario.php'" value = "Agregar Usuario" class = "btn btn-primary" ></input>
+        
             <div class="card col-sm-25">
                 
                 <div class="card-header">
@@ -87,10 +87,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Turno</th>
-                                <th scope="col">Direccion</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Telefono</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Direccion</th>
+                                <th scope="col">Turno</th>
                                
                             </tr>
                         </thead>
@@ -108,10 +108,10 @@
                                 <td><?php echo $dato->direccion; ?></td>
                                 <td><?php echo $dato->turno; ?></td>
                                 
-                                <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td>
+                                <td><a class="text-success" href="editarUsuarios.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminarUsuario.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-trash"></i></a></td>
                                <!-- <td><a class="text-success" href="vista.php?codigo=<?//php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>-->
-                                <!-- <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td> -->
+                                <!-- <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?//php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td> -->
                             </tr>
 
                             <?php 
