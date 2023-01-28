@@ -13,6 +13,8 @@
     $sentencia->execute([$codigo]);
     $usuarios = $sentencia->fetch(PDO::FETCH_OBJ);
     //print_r($persona);
+    var_dump($usuarios->rol);
+    var_dump($usuarios->turno);
 ?>
 
 <div class="container mt-5">
@@ -58,15 +60,24 @@
                         <select id="inputState" class="form-control" name="datoTurno"
                         value="<?php echo $usuarios->turno; ?>">
                             <option disabled="true">Seleccionar...</option>
-                            <option value = "matutino">Matutino</option>
-                            <option value = "vespertino">Vespertino</option>
-                            <option value = "nocturno">Nocturno</option>
+                            <option value ="matutino"<?php echo isset($usuarios->turno) && $usuarios->turno == "matutino" ? "selected" : ''?>>Matutino</option>
+                            <option value ="vespertino"<?php echo isset($usuarios->turno) && $usuarios->turno == "vespertino" ? "selected" : ''?>>Vespertino</option>
+                            <option value ="nocturno"<?php echo isset($usuarios->turno) && $usuarios->turno == "nocturno" ? "selected" : ''?>>Nocturno</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Contraseña: </label>
                         <input type="text" class="form-control" name="datoContraseña" required 
                         value="<?php echo $usuarios->password; ?>">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputState">Rol</label>
+                        <select  id="inputState" class="form-control" name="datoRol"
+                        value="<?php echo $usuarios->rol; ?>">
+                            <option disabled="true">Seleccionar...</option>
+                            <option value ="administrador"<?php echo isset($usuarios->rol) && $usuarios->rol == "administrador" ? "selected" : ''?>>Administrador</option>
+                            <option value ="usuario"<?php echo isset($usuarios->rol) && $usuarios->rol == "usuario" ? "selected" : ''?>>Usuario</option>
+                        </select>
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="codigo" value="<?php echo $usuarios->idUsuario; ?>">

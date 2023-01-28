@@ -91,7 +91,7 @@
                                 <th scope="col">Correo</th>
                                 <th scope="col">Direccion</th>
                                 <th scope="col">Turno</th>
-                               
+                                <th scope="col">Rol</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,7 +107,7 @@
                                 <td><?php echo $dato->email; ?></td>
                                 <td><?php echo $dato->direccion; ?></td>
                                 <td><?php echo $dato->turno; ?></td>
-                                
+                                <td><?php echo $dato->rol; ?></td>
                                 <td><a class="text-success" href="editarUsuarios.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-pencil-square"></i></a></td>
                                 <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminarUsuario.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-trash"></i></a></td>
                                <!-- <td><a class="text-success" href="vista.php?codigo=<?//php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>-->

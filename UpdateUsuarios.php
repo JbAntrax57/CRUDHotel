@@ -2,7 +2,7 @@
     
     if(empty($_POST["datoNombre"]) 
     || empty($_POST["datoApellido_pat"]) || empty($_POST["datoApellido_mat"]) || empty($_POST["datoTelefono"]) || empty($_POST["datoEmail"])
-    || empty($_POST["datoDireccion"])|| empty($_POST["datoTurno"])|| empty($_POST["datoContraseña"])){
+    || empty($_POST["datoDireccion"])|| empty($_POST["datoTurno"])|| empty($_POST["datoContraseña"])|| empty($_POST["datoRol"])){
         header('Location: index.php?mensaje=warning');
         exit();
     }
@@ -16,10 +16,11 @@
     $direccion = $_POST["datoDireccion"];
     $turno = $_POST["datoTurno"];
     $password = $_POST["datoContraseña"];
+    $rol = $_POST["datoRol"];
     $idUsuario = $_POST["codigo"];
-    $sentencia = $bd->prepare("UPDATE usuario SET nombre = ?, apellido_pat = ?, apellido_mat= ?, telefono = ?, email = ?, direccion = ?, turno = ?, password = ? where idUsuario = ?;");
+    $sentencia = $bd->prepare("UPDATE usuario SET nombre = ?, apellido_pat = ?, apellido_mat= ?, telefono = ?, email = ?, direccion = ?, turno = ?, password = ?, rol = ? where idUsuario = ?;");
      $resultado = $sentencia->execute([$nombre,$apellido_pat,$apellido_mat,$telefono,$email,$direccion
-    ,$turno,$password,$idUsuario]);
+    ,$turno,$password,$rol,$idUsuario]);
 
    
 

@@ -16,11 +16,11 @@
     $direccion = $_POST["datoDireccion"];
     $turno = $_POST["datoTurno"];
     $password = $_POST["datoContraseña"];
+    $rol = $_POST["datoRol"];
     
-    
-    $sentencia = $bd->prepare("INSERT INTO usuario(nombre, apellido_pat, apellido_mat, telefono, email, direccion, turno, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+    $sentencia = $bd->prepare("INSERT INTO usuario(nombre, apellido_pat, apellido_mat, telefono, email, direccion, turno, password, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
     $resultado = $sentencia->execute([$nombre,$apellido_pat,$apellido_mat,$telefono,$email,$direccion
-    ,$turno,$password]);
+    ,$turno,$password,$rol]);
    
 
 

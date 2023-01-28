@@ -109,6 +109,14 @@
                         <label class="form-label">Contraseña: </label>
                         <input type="text" class="form-control" name="datoContraseña" required>
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="inputState">Rol</label>
+                        <select id="inputState" class="form-control" name="datoRol">
+                            <option selected disabled="true">Seleccionar...</option>
+                            <option value = "administrador">Administrador</option>
+                            <option value = "usuario">Usuario</option>
+                        </select>
+                    </div>
                     <div class="d-grid">
                     <input type="hidden" name="oculto" value="1">
                     <input type="submit" class="btn btn-primary" value="Registrar">
