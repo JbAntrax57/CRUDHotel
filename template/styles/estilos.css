@@ -1,0 +1,67 @@
+.principal {
+    margin-top: 10px;
+}
+
+/* Tarjeta */
+
+.card-header-first {
+    margin-top: -40px;
+    height: 120px;
+    /* background: linear-gradient(-90deg, #BF019F, #F28A57); */
+    background: rgb(230,119,47);
+    background: linear-gradient(0deg, rgba(230,119,47,1) 0%, rgba(167,3,3,1) 100%);
+    box-shadow: 1px 5px 15px #a2a2a2;
+}
+
+.card-header-second {
+    box-shadow: 1px 5px 15px #a2a2a2;
+    margin: -25px -25px 0px -25px;
+    height: 120px;
+    background: linear-gradient(-90deg, #8E2DE2, #4A00E0);
+}
+
+.card-header-third {
+    margin-top: -40px;
+    height: 120px;
+    box-shadow: 1px 5px 15px #a2a2a2;
+    /* background: linear-gradient(-90deg, #11998e, #38ef7d); */
+    background: rgb(73,203,133);
+    background: linear-gradient(0deg, rgba(73,203,133,1) 0%, rgba(31,125,42,1) 100%);
+}
+
+/* .card-header-third {
+    margin-top: -25px;
+    height: 120px;
+    box-shadow: 1px 5px 15px #a2a2a2;
+    background: linear-gradient(-90deg, #11998e, #38ef7d);
+}
+
+.card-section-third span i{
+    padding: 17px;
+    margin: 0px 10px;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    box-shadow: 1px 5px 15px #a2a2a2;
+    background: linear-gradient(-90deg, #11998e, #38ef7d);
+}
+
+.card.card-header-third span i:hover,.card-section-third span i:hover {
+    box-shadow: 1px 1px 15px #000;
+} */
+
+.card-section {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);   
+}
+
+.card-section:hover {
+    box-shadow: 1px 1px 20px #d2d2d2;
+}
+
+.texto-izq {
+    text-align: left;
+}
+
+.espacio {
+    padding-left: 70%;
+}

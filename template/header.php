@@ -11,7 +11,7 @@
 
     <!-- cdn icnonos-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    
+    <link rel="stylesheet" href="template/styles/estilos.css">
   </head>
   <style>
 .img {
@@ -65,6 +65,9 @@ border-radius:100%;
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="usuarios.php?">Usuarios <i class="bi bi-person-circle"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="habitaciones.php?">Habitaciones<i class="bi bi-house"></i></a>
       </li>
       <li class="nav-item float-right text-red">      
       <a class="btn btn-outline-danger botonl" href="login.php" role="button"><i class="bi bi-power"></i></a>    

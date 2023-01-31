@@ -1,7 +1,7 @@
 <?php include 'template/header.php' ?>
 <?php
     include_once "model/conexion.php";
-    $sentencia = $bd -> query("select * from habitaciones where disponible = 0");
+    $sentencia = $bd -> query("select * from habitaciones where disponible = 1");
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
@@ -105,9 +105,9 @@
                         <label class="form-label">Habitacion: </label>
                         <select id="inputState" class="form-control" name="datoHabitacion">
                             <?php 
-                                foreach ($habitaciones as $habitacion) { 
+                                foreach ($habitaciones as $habitacion) {
                             ?> 
-                                <option value="<?php  echo $habitacion->nom_habitacion; ?>" <?php echo isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
+                                <option value="<?php  echo $habitacion->nom_habitacion; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
                             <?php 
                                 }
                             ?> 
