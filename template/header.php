@@ -11,15 +11,15 @@
 
     <!-- cdn icnonos-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    
+    <link rel="stylesheet" href="estilos.css">
   </head>
   <style>
-.img {
+img {
   border: 1px solid #ddd;
-  border-radius: 100%;
+  border-radius: 4px;
   padding: 5px;
-  width: 66px;
-  }
+  width: 150px;
+}
   image {
   border: 1px solid #ddd;
   border-radius: 100%;
@@ -76,3 +76,36 @@ border-radius:100%;
   <img src="img/logohotel.png"><h3 class="text-center text-white" >Sistema de Reservaciones Hotel Jardin de Jaluco</h3>
 </nav>
     
+<!--
+<div class="icono-menu" >
+  <img src="img/open-menu.png" id="icono-menu">
+</div>
+<div class="cont-menu active" id="menu">
+  <ul>
+    <li>Inicio</li>
+    <li>Registro</li>
+    <li>Reservaciones</li>
+    <li>Usuarios</li>
+  </ul>
+
+</div>
+<script src="app.js" ></script>
+-->
+
+<!--
+<nav>
+  <div class="menu-container">
+    <div class="menu-btn">
+      <div class="btn-line"></div>
+      <div class="btn-line"></div>
+      <div class="btn-line"></div>
+    </div>
+    <ul class="menu-links">
+      <li class="menu-item"><a href="#">Inicio</a></li>
+      <li class="menu-item"><a href="#">Registro</a></li>
+      <li class="menu-item"><a href="#">Reservaciones</a></li>
+      <li class="menu-item"><a href="#">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
+-->
