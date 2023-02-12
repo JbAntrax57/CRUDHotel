@@ -5,11 +5,10 @@
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
 <head>
-<link rel="stylesheet" href="template/styles/estilos.css">
+<link rel="stylesheet" href="css/styleRooms.css">
 </head>
-<body>
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-12 text-center">
             <div class="row">
                 <!-- CÓDIGO DE LOS CARDS PARA LAS HABITACIONES -->
@@ -59,4 +58,5 @@
         </div>
     </div>
 </div>
-</body>
+
+<?php include 'template/footer.php' ?>

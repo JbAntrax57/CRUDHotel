@@ -1,119 +1,47 @@
-<html>  
-<head>  
-    <title>Ingreso al Sistema de Hotel Jardin de Jaluco</title>  
-    <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel = "stylesheet" type = "text/css" href = "style.css">   
-</head>  
-<style>
-	body{
-		width: 100%;
-	    height: calc(100%);
-	    /*background: #007bff;*/
-	}
-	main#main{
-		width:100%;
-		height: calc(100%);
-		background:white;
-	}
-	#login-right{
-		position: absolute;
-		right:0;
-		width:40%;
-		height: calc(100%);
-		background:white;
-		display: flex;
-		align-items: center;
-	}
-	#login-left{
-		position: absolute;
-		left:0;
-		width:60%;
-		height: calc(100%);
-		background:#59b6ec61;
-		display: flex;
-		align-items: center;
-		background: url(img/login.jpg);
-	    background-repeat: no-repeat;
-	    background-size: cover;
-	}
-	#login-right .card{
-		margin: auto;
-		z-index: 1
-	}
-	.logo {
-    margin: auto;
-    font-size: 8rem;
-    background: white;
-    padding: .5em 0.7em;
-    border-radius: 50% 50%;
-    color: #000000b3;
-    z-index: 10;
-    background: url(img/logohotel.png);
-}
-div#login-left::before,div#login-right::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100%);
-    height: calc(100%);
-    background: #00c4ff36;
-}
+<!doctype html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="#" />
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Login con  PHP - Bootstrap 4</title>
 
-</style>
-<body>  
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styleLogin.css">
+        <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">        
+        
+        <link rel="stylesheet" type="text/css" href="fuentes/iconic/css/material-design-iconic-font.min.css">
+        
+    </head>
     
-<main id="main" class=" bg-dark">
-  		<div id="login-left">
-  			<div class="logo">
-  				<span class="icofont-5-star-hotel"></span>
-  			</div>
-  		</div>
-  		<div id="login-right">
-  			<div class="card col-md-8">
-  				<div class="card-body">
-  					<form id="login-form" name="f1" action = "acceso.php" onsubmit = "return validation()" method = "POST">
-  						<div class="form-group">
-  							<label for="user" class="control-label">Nombre de Usuario</label>
-  							<input type="text" id="user" name="user" class="form-control">
-  						</div>
-  						<div class="form-group">
-  							<label for="pass" class="control-label">Contraseña</label>
-  							<input type="password" id="pass" name="pass" class="form-control">
-  						</div>
-  						<input type =  "submit" id = "btn" value = "Entrar" class="btn-sm btn-block btn-wave col-md-6 btn-primary"/>
-
-  					</form>
-  				</div>
-  			</div>
-  		</div>
-   
-
-  </main>
-
-
-  <a href="#" class="back-to-top"><i class="icofont-5-star-hotel"></i></a>
-
-
-
-    <!--<div id = "frm">  
-        <h1>Bienvenido al Sistema</h1>  
-        <form name="f1" action = "acceso.php" onsubmit = "return validation()" method = "POST">  
-            <p>  
-                <label> Nombre de Usuario: </label>  
-                <input type = "text" id ="user" name  = "user" />  
-            </p>  
-            <p>  
-                <label> Contraseña: </label>  
-                <input type = "password" id ="pass" name  = "pass" />  
-            </p>  
-            <p>     
-                <input type =  "submit" id = "btn" value = "Entrar" class="btn-sm btn-block btn-wave col-md-6 btn-primary"/>  
-            </p>  
-        </form>  
-    </div>  
---> 
+    <body>
+     
+      <div class="container-login">
+        <div class="wrap-login">
+            <form class="login-form validate-form" action="acceso.php" method="post">
+                <img src="img/logohotel.png" alt="logo" style="height: 90px; widht: 90px; margin-left: 30%; margin-bottom: 10%; margin-top: -10%;">
+                
+                <div class="wrap-input100" data-validate = "Usuario incorrecto">
+                    <input class="input100" type="text" id="usuario" name="user" placeholder="Usuario">
+                    <span class="focus-efecto"></span>
+                </div>
+                
+                <div class="wrap-input100" data-validate="Password incorrecto">
+                    <input class="input100" type="password" id="password" name="pass" placeholder="Password">
+                    <span class="focus-efecto"></span>
+                </div>
+                
+                <div class="container-login-form-btn">
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button type="submit" class="login-form-btn">CONECTAR</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>     
+        
     <script>  
             function validation()  
             {  
@@ -136,5 +64,11 @@ div#login-left::before,div#login-right::before {
                 }                             
             }  
         </script>  
-</body>     
-</html> 
+     <script src="jquery/jquery-3.3.1.min.js"></script>    
+     <script src="bootstrap/js/bootstrap.min.js"></script>    
+     <script src="popper/popper.min.js"></script>    
+        
+     <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>    
+     <!-- <script src="codigo.js"></script> -->
+    </body>
+</html>
