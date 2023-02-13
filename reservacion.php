@@ -1,14 +1,19 @@
 <?php include 'template/header.php' ?>
 <?php
     include_once "model/conexion.php";
-    $sentencia = $bd -> query("select * from habitaciones where disponible = 0");
+    $sentencia = $bd -> query("select * from habitaciones where disponible = 1");
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+    $sql = $bd -> query("select no_folio from reservaciones");
+    $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
-<body>
-<div class="container mt-5">
-    <div class="row justify-content-center">
-<div class="col-md-4">
+<head>
+    <link rel="stylesheet" href="css/styleGeneral.css">
+</head>
+<div class="margin_formulario">
+    <div class="row">
+        <div class="col-sm-12">
 <?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta'){
             ?>
@@ -66,77 +71,95 @@
                 }
             ?> 
 
+<?php 
+                echo end($reservacion[0]);
+            ?> 
             
-           
-            <div class="card">
-                <div class="card-header">
+            <div class="table_title rounded p-2">FORMULARIO RESERVACIÓN</div>
+            <div class="card shadow_general">
+                <!--<div class="card-header">
                     Ingresar Reservacion:
-                </div>
+                </div>-->
                 <form class="p-4" method="POST" action="registrar.php">
-                    <div class="mb-3">
-                        <label class="form-label">Nombre: </label>
-                        <input type="text" class="form-control" name="datoNombre" autofocus required>
+                    <div class="col-sm-12 input-group">
+                        <div class="col-sm-1 float_right">
+                            <label class="form-label">Folio: </label>
+                            <input value="<?php?>" type="number" class="form-control" name="datoFolio" autofocus required readonly>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Fecha DEPS: </label>
-                        <input type="date" class="form-control" name="datoDEPS" autofocus required>
+                    <div class="col-sm-12 input-group mt-3">
+                        <div class="col-sm-2">
+                            <label class="form-label">Nombre: </label>
+                            <input type="text" class="form-control" name="datoNombre" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2">
+                            <label class="form-label">Fecha DEPS: </label>
+                            <input type="date" class="form-control" name="datoDEPS" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2">
+                            <label class="form-label">Telefono: </label>
+                            <input type="text" class="form-control" name="datoTelefono" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2">
+                            <label class="form-label">Correo Electronico: </label>
+                            <input type="email" class="form-control" name="datoEmail" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2">
+                            <label class="form-label">Lugar Residencia: </label>
+                            <input type="text" class="form-control" name="datoResidencia" autofocus required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Telefono: </label>
-                        <input type="text" class="form-control" name="datoTelefono" autofocus required>
+                    <div class="col-sm-12 input-group mt-3">
+                        <div class="col-sm-2">
+                            <label class="form-label">Fecha Llegada: </label>
+                            <input type="date" class="form-control" name="datoFechaLlegada" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2">
+                            <label class="form-label">Fecha Salida: </label>
+                            <input type="date" class="form-control" name="datoFechaSalida" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2">
+                            <label class="form-label">Habitacion: </label>
+                            <select id="inputState" class="form-control" name="datoHabitacion">
+                                <?php 
+                                    foreach ($habitaciones as $habitacion) {
+                                ?> 
+                                    <option value="<?php  echo $habitacion->nom_habitacion; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
+                                <?php 
+                                    }
+                                ?> 
+                            </select>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-1">
+                            <label class="form-label">N° Personas: </label>
+                            <input type="number" class="form-control" name="datoNoPersonas" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-1">
+                            <label class="form-label">Deposito: </label>
+                            <input type="number" class="form-control" name="datoDeposito" autofocus required>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2 mt-2">
+                            <label for="form-label">Tipo Pago: </label>
+                            <select id="inputState" class="form-control" name="datoTipoPago">
+                                <option selected disabled="true">Seleccionar...</option>
+                                <option value = "Efectivo">Efectivo</option>
+                                <option value = "Tarjeta">Tarjeta</option>
+                                <option value = "Transferencia">Transferencia</option>
+                                <option value = "Credito">Credito</option>
+                                <option value = "Cortesia">Cortesia</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Correo Electronico: </label>
-                        <input type="email" class="form-control" name="datoEmail" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Lugar Residencia: </label>
-                        <input type="text" class="form-control" name="datoResidencia" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Fecha Llegada: </label>
-                        <input type="date" class="form-control" name="datoFechaLlegada" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Fecha Salida: </label>
-                        <input type="date" class="form-control" name="datoFechaSalida" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Habitacion: </label>
-                        <select id="inputState" class="form-control" name="datoHabitacion">
-                            <?php 
-                                foreach ($habitaciones as $habitacion) { 
-                            ?> 
-                                <option value="<?php  echo $habitacion->nom_habitacion; ?>" <?php echo isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
-                            <?php 
-                                }
-                            ?> 
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Numero de Personas: </label>
-                        <input type="number" class="form-control" name="datoNoPersonas" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Deposito: </label>
-                        <input type="number" class="form-control" name="datoDeposito" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Folio: </label>
-                        <input type="number" class="form-control" name="datoFolio" autofocus required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="inputState">Tipo Pago</label>
-                        <select id="inputState" class="form-control" name="datoTipoPago">
-                            <option selected disabled="true">Seleccionar...</option>
-                            <option value = "Efectivo">Efectivo</option>
-                            <option value = "Tarjeta">Tarjeta</option>
-                            <option value = "Transferencia">Transferencia</option>
-                            <option value = "Credito">Credito</option>
-                            <option value = "Cortesia">Cortesia</option>
-                        </select>
-                    </div>
-                    <div class="d-grid">
+                    <div class="d-grid mt-3 ">
                         <input type="hidden" name="oculto" value="1">
                         <input type="submit" class="btn btn-primary" value="Registrar">
                     </div>
@@ -145,4 +168,5 @@
         </div>
     </div>
 </div>
-</body>
+
+<?php include 'template/footer.php' ?>
