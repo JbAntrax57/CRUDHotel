@@ -6,8 +6,13 @@
     background: rgb(207, 221, 127);
 }
 
-.margin_general {
-    margin-top: 10%;
+.margin_formulario {
+    margin-top: 7%;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+.margin_table {
+    margin-top: 7%;
     margin-left: 2%;
     margin-right: 2%;
 }

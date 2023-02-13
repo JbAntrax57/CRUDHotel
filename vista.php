@@ -9,7 +9,7 @@
 <head>
     <link rel="stylesheet" href="css/styleGeneral.css">
 </head>
-<div class="margin_general">
+<div class="margin_table">
     <div class="row">
         <div class="col-sm-12">
             <!-- inicio alerta -->
@@ -94,6 +94,7 @@
                                 <th scope="col">Deposito</th>
                                 <th scope="col">Fecha Reservacion</th>
                                 <th scope="col">Tipo Pago</th>
+                                <th scope="col">Numero de Noches</th>
                                 <th scope="col" colspan="2">Opciones</th>
                             </tr>
                         </thead>
@@ -116,6 +117,7 @@
                                 <td><?php echo $dato->deposito; ?></td>
                                 <td><?php echo $dato->fecha_reservacion; ?></td>
                                 <td><?php echo $dato->tipo_pago; ?></td>
+                                <td><?php echo $dato->no_noches; ?></td>
                                 <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->idReservaciones; ?>"><i class="bi bi-pencil-square"></i></a></td>
                                 <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->idReservaciones; ?>"><i class="bi bi-trash"></i></a></td>
                                <!-- <td><a class="text-success" href="vista.php?codigo=<?//php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>-->

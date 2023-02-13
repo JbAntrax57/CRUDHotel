@@ -11,7 +11,7 @@
 <head>
     <link rel="stylesheet" href="css/styleGeneral.css">
 </head>
-<div class="margin_general">
+<div class="margin_formulario">
     <div class="row">
         <div class="col-sm-12">
 <?php 
@@ -88,12 +88,12 @@
                             <label class="form-label">Nombre: </label>
                             <input type="text" class="form-control" name="datoNombre" autofocus required>
                         </div>
-                        <!--&nbsp;&nbsp;&nbsp;-->
+                        &nbsp;&nbsp;&nbsp;
                         <div class="col-sm-2">
                             <label class="form-label">Fecha DEPS: </label>
                             <input type="date" class="form-control" name="datoDEPS" autofocus required>
                         </div>
-                        <!--&nbsp;&nbsp;&nbsp;-->
+                        &nbsp;&nbsp;&nbsp;
                         <div class="col-sm-2">
                             <label class="form-label">Telefono: </label>
                             <input type="text" class="form-control" name="datoTelefono" autofocus required>
@@ -114,10 +114,12 @@
                             <label class="form-label">Fecha Llegada: </label>
                             <input type="date" class="form-control" name="datoFechaLlegada" autofocus required>
                         </div>
+                        &nbsp;&nbsp;&nbsp;
                         <div class="col-sm-2">
                             <label class="form-label">Fecha Salida: </label>
                             <input type="date" class="form-control" name="datoFechaSalida" autofocus required>
                         </div>
+                        &nbsp;&nbsp;&nbsp;
                         <div class="col-sm-2">
                             <label class="form-label">Habitacion: </label>
                             <select id="inputState" class="form-control" name="datoHabitacion">
@@ -130,15 +132,18 @@
                                 ?> 
                             </select>
                         </div>
+                        &nbsp;&nbsp;&nbsp;
                         <div class="col-sm-1">
                             <label class="form-label">N° Personas: </label>
                             <input type="number" class="form-control" name="datoNoPersonas" autofocus required>
                         </div>
+                        &nbsp;&nbsp;&nbsp;
                         <div class="col-sm-1">
                             <label class="form-label">Deposito: </label>
                             <input type="number" class="form-control" name="datoDeposito" autofocus required>
                         </div>
-                        <div class="col-sm-1 mt-2">
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2 mt-2">
                             <label for="form-label">Tipo Pago: </label>
                             <select id="inputState" class="form-control" name="datoTipoPago">
                                 <option selected disabled="true">Seleccionar...</option>
@@ -150,7 +155,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="d-grid mt-3">
+                    <div class="d-grid mt-3 ">
                         <input type="hidden" name="oculto" value="1">
                         <input type="submit" class="btn btn-primary" value="Registrar">
                     </div>
