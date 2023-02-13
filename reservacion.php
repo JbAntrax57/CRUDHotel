@@ -4,7 +4,7 @@
     $sentencia = $bd -> query("select * from habitaciones where disponible = 1");
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
-    $sql = $bd -> query("select no_folio from reservaciones");
+    $sql = $bd -> query("select no_folio from reservaciones order by idReservaciones desc");
     $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
@@ -69,11 +69,7 @@
             </div>
             <?php 
                 }
-            ?> 
-
-<?php 
-                echo end($reservacion[0]);
-            ?> 
+            ?>
             
             <div class="table_title rounded p-2">FORMULARIO RESERVACIÓN</div>
             <div class="card shadow_general">
@@ -84,10 +80,10 @@
                     <div class="col-sm-12 input-group">
                         <div class="col-sm-1 float_right">
                             <label class="form-label">Folio: </label>
-                            <input value="<?php?>" type="number" class="form-control" name="datoFolio" autofocus required readonly>
+                            <input value="<?php echo $reservacion[0]->no_folio+1; ?>" type="number" class="form-control" name="datoFolio" autofocus required readonly>
                         </div>
                     </div>
-                    <div class="col-sm-12 input-group mt-3">
+                    <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
                         <div class="col-sm-3">
                             <label class="form-label">Nombre: </label>
                             <input type="text" class="form-control" name="datoNombre" autofocus required>
@@ -103,17 +99,17 @@
                             <input type="text" class="form-control" name="datoTelefono" autofocus required>
                         </div>
                         <!--&nbsp;&nbsp;&nbsp;-->
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label class="form-label">Correo Electronico: </label>
                             <input type="email" class="form-control" name="datoEmail" autofocus required>
                         </div>
                         <!--&nbsp;&nbsp;&nbsp;-->
+                    </div>
+                    <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
                         <div class="col-sm-2">
                             <label class="form-label">Lugar Residencia: </label>
                             <input type="text" class="form-control" name="datoResidencia" autofocus required>
                         </div>
-                    </div>
-                    <div class="col-sm-12 input-group mt-3">
                         <div class="col-sm-2">
                             <label class="form-label">Fecha Llegada: </label>
                             <input type="date" class="form-control" name="datoFechaLlegada" autofocus required>
