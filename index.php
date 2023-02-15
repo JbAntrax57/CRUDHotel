@@ -27,7 +27,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
 <script type="text/javascript">
 
-  const labels = ['Enero', 'Febrero', 'Marzo', 'Abril']
+  console.log('<?php echo $a; ?>');
+  const labels = ['Enero', 'Febrero', 'Marzo', 'Abril'];
 
   const dataset1 = {
       label: "Dataset 1",
