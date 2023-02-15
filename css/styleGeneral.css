@@ -17,6 +17,12 @@
     margin-right: 2%;
 }
 
+.margin_graph {
+    margin-top: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .table_theme {
     background: rgb(245, 236, 73);
 }
