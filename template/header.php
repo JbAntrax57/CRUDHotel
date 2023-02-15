@@ -46,6 +46,47 @@
               <li><a class="dropdown-item" href="vista.php"><i class="bi bi-card-list"></i>&nbsp;&nbsp;&nbsp;Mostrar reservaciones</a></li>
             </ul>
           </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-file-earmark-spreadsheet"></i>&nbsp;&nbsp;&nbsp;Reportes
+            </a>
+            <ul class="dropdown-menu menu-bg-light">
+              <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i>&nbsp;&nbsp;&nbsp;Estatus de Reporte</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-door-open"></i>&nbsp;&nbsp;&nbsp;Habitaciones
+            </a>
+            <ul class="dropdown-menu menu-bg-light">
+              <li><a class="dropdown-item" href="habitaciones.php"><i class="bi bi-door-closed"></i>&nbsp;&nbsp;&nbsp;Estado Habitaciones</a></li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-bell-concierge"></i>&nbsp;&nbsp;&nbsp;Recepcion
+            </a>
+            <ul class="dropdown-menu menu-bg-light">
+              <li><a class="dropdown-item" href="#"><i class="bi bi-vector-pen"></i>&nbsp;&nbsp;&nbsp;Caja</a></li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-people"></i>&nbsp;&nbsp;&nbsp;Usuarios
+            </a>
+            <ul class="dropdown-menu menu-bg-light">
+              <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i>&nbsp;&nbsp;&nbsp;Lista Usuarios</a></li>
+              <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill-add"></i>&nbsp;&nbsp;&nbsp;Agregar Usuario</a></li>
+                
+            </ul>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
