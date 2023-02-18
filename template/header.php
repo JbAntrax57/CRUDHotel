@@ -81,25 +81,13 @@
             <i class="bi bi-people"></i>&nbsp;&nbsp;&nbsp;Usuarios
             </a>
             <ul class="dropdown-menu menu-bg-light">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i>&nbsp;&nbsp;&nbsp;Lista Usuarios</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill-add"></i>&nbsp;&nbsp;&nbsp;Agregar Usuario</a></li>
+              <li><a class="dropdown-item" href="usuarios.php"><i class="bi bi-person"></i>&nbsp;&nbsp;&nbsp;Lista Usuarios</a></li>
+              <li><a class="dropdown-item" href="agregarUsuario.php"><i class="bi bi-person-plus"></i>&nbsp;&nbsp;&nbsp;Agregar Usuario</a></li>
                 
             </ul>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" style="background: rgba(7,163,222,1);">
-              <li><a class="dropdown-item" href="reservacion.php"><i class="bi bi-card-checklist"></i>Registro</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+       
         </ul>
         <form class="d-flex mt-3" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

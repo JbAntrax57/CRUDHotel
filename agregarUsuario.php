@@ -4,7 +4,7 @@
    
     //print_r($persona);
 ?>
-<body>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
 <div class="col-md-4">
@@ -126,4 +126,4 @@
         </div>
     </div>
 </div>
-</body>
+<?php include 'template/footer.php' ?>
