@@ -18,6 +18,29 @@
         exit();
     }
 
+    // Proceso de llenado para la cantidad de las personas
+    $max_person = array();
+    for ($cont = 1; $cont <= 20; $cont++) {
+        if ($cont != 7 && $cont <= 11) {
+            $max_person['Habitacion '.$cont] = 4;
+        }
+        if ($cont === 7 || $cont === 17 || $cont === 18) {
+            $max_person['Habitacion '.$cont] = 5;
+        }
+        if ($cont === 13 || $cont === 14) {
+            $max_person['Habitacion '.$cont] = 1;
+        }
+        if ($cont === 15 || $cont === 16) {
+            $max_person['Habitacion '.$cont] = 6;
+        }
+        if ($cont === 19) {
+            $max_person['Bungalow '.$cont] = 5;
+        }
+        if ($cont === 20) {
+            $max_person['Bungalow '.$cont] = 4;
+        }
+    }    
+
     // Restar fechas para poder sacar los no_días 
     $fecha1 = date_create($fecha_llegada);
     $fecha2 = date_create($fecha_salida);

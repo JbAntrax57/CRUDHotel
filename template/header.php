@@ -82,7 +82,7 @@
             </a>
             <ul class="dropdown-menu menu-bg-light">
               <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i>&nbsp;&nbsp;&nbsp;Lista Usuarios</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill-add"></i>&nbsp;&nbsp;&nbsp;Agregar Usuario</a></li>
+              <li><a class="dropdown-item" href="#"><i class="bi bi-person-plus"></i>&nbsp;&nbsp;&nbsp;Agregar Usuario</a></li>
                 
             </ul>
           </li>
