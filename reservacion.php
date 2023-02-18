@@ -133,7 +133,7 @@
                                 <?php 
                                     foreach ($habitaciones as $habitacion) {
                                 ?> 
-                                    <option value="<?php  echo $habitacion->nom_habitacion; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
+                                    <option value="<?php echo $habitacion->id; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
                                 <?php 
                                     }
                                 ?> 

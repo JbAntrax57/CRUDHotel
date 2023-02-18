@@ -40,9 +40,9 @@
     ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches)]);
 
     if ($resultado === TRUE) {
-        header('Location: index.php?mensaje=registrado');
+        header('Location: vista.php?mensaje=registrado');
     } else {
-        header('Location: index.php?mensaje=error');
+        header('Location: reservacion.php?mensaje=error');
         exit();
     }
     
