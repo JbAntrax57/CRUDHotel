@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="css/styleRooms.css">
 </head>
-<div class="container">
+<div class="container" style="margin-top: 5%;">
     <div class="row mt-5">
         <div class="col-lg-12 text-center">
             <div class="row">

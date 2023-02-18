@@ -1,8 +1,15 @@
 <?php include 'template/header.php' ?>
 
 <?php
-    include_once "model/conexion.php";
-    $a = 'La hermosa';
+  include_once "model/conexion.php";
+  $datos = array();
+  $sql = $bd -> query("select deposito from reservaciones order by idReservaciones asc");
+  $reservaciones = $sql->fetchAll(PDO::FETCH_OBJ);
+
+  foreach ($reservaciones as $reservacion) {
+    array_push($datos, $reservacion->deposito);
+  }
+  // print_r($datos);
 ?>
 <!-- <div class="row mt-4">
       <div class="">
@@ -25,22 +32,21 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
-
-  console.log('<?php echo $a; ?>');
-  const labels = ['Enero', 'Febrero', 'Marzo', 'Abril'];
-
-  const dataset1 = {
-      label: "Dataset 1",
-      data: [10, 55, 60, 120],
+  const axios = require('axios');
+  const labels = ['Enero', 'Febrero', 'Marzo'];
+  const gastos = {
+      label: "Gastos",
+      data: [10, 55, 60],
       borderColor: 'rgba(248, 37, 37, 0.8)',
       fill: false,
       tension: 0.1
   };
 
-  const dataset2 = {
-      label: "Dataset 2",
-      data: [5, 44, 55, 100],
+  const ingresos = {
+      label: "Ingresos",
+      data: [10, 40, 60],
       borderColor: 'rgba(69, 248, 84, 0.8)',
       fill: false,
       tension: 0.1
@@ -48,7 +54,7 @@
 
   const dataset3 = {
       label: "Dataset 3",
-      data: [20, 40, 55, 120],
+      data: [20, 40, 55],
       borderColor: 'rgba(69, 140, 248, 0.8)',
       fill: false,
       tension: 0.1
@@ -56,7 +62,7 @@
 
   const dataset4 = {
       label: "Dataset 4",
-      data: [18, 40, 20, 100],
+      data: [18, 40, 20],
       borderColor: 'rgba(245, 40, 145, 0.8)',
       fill: false,
       tension: 0.1
@@ -66,7 +72,7 @@
 
   const data = {
       labels: labels,
-      datasets: [dataset1,dataset2,dataset3,dataset4]
+      datasets: [gastos,ingresos,dataset3,dataset4]
   };
 
   const config = {

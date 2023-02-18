@@ -10,9 +10,22 @@
 
     include_once 'model/conexion.php';
     $deps = date("Y-m-d", strtotime($_POST["datoDEPS"]));
+
     $fecha_llegada = date("Y-m-d", strtotime($_POST["datoFechaLlegada"]));
     $fecha_salida = date("Y-m-d", strtotime($_POST["datoFechaSalida"]));
+    if ($fecha_llegada > $fecha_salida) {
+        header('Location: reservacion.php?mensaje=fecha');
+        exit();
+    }
+
+    // Restar fechas para poder sacar los no_días 
+    $fecha1 = date_create($fecha_llegada);
+    $fecha2 = date_create($fecha_salida);
+    $diff=date_diff($fecha1,$fecha2);
+    $no_noches = $diff->format("%R%a");
+
     $fecha_reservacion = date("Y-m-d");
+
     $nombre = $_POST["datoNombre"];
     $telefono = $_POST["datoTelefono"];
     $correo = $_POST["datoEmail"];
@@ -22,10 +35,9 @@
     $deposito = $_POST["datoDeposito"];
     $no_folio = $_POST["datoFolio"];
     $tipo_pago = $_POST["datoTipoPago"];
-//var_dump($_POST);
-    $sentencia = $bd->prepare("INSERT INTO reservaciones(nombre, fecha_deps, num_telefono, email, lugar_residencia, fecha_llegada, fecha_salida, habitacion_id, no_personas, deposito, fecha_reservacion, tipo_pago, no_folio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+    $sentencia = $bd->prepare("INSERT INTO reservaciones(nombre, fecha_deps, num_telefono, email, lugar_residencia, fecha_llegada, fecha_salida, habitacion_id, no_personas, deposito, fecha_reservacion, tipo_pago, no_folio, no_noches) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
     $resultado = $sentencia->execute([$nombre,$deps,$telefono,$correo,$residencia,$fecha_llegada
-    ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio]);
+    ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches)]);
 
     if ($resultado === TRUE) {
         header('Location: index.php?mensaje=registrado');

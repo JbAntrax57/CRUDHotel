@@ -70,6 +70,17 @@
             <?php 
                 }
             ?>
+
+<?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'fecha'){
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> La fecha de llegada no puede ser mayor a la de salida.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?>
             
             <div class="table_title rounded p-2">FORMULARIO RESERVACIÓN</div>
             <div class="card shadow_general">
