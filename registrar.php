@@ -48,7 +48,7 @@
     $no_noches = $diff->format("%R%a");
 
     $fecha_reservacion = date("Y-m-d");
-
+    
     $nombre = $_POST["datoNombre"];
     $telefono = $_POST["datoTelefono"];
     $correo = $_POST["datoEmail"];

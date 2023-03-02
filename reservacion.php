@@ -11,6 +11,7 @@
 <head>
     <link rel="stylesheet" href="css/styleGeneral.css">
 </head>
+<div class="container mt-5">
 <div class="margin_formulario">
     <div class="row">
         <div class="col-sm-12">
@@ -99,6 +100,7 @@
                             <label class="form-label">Nombre: </label>
                             <input type="text" class="form-control" name="datoNombre" autofocus required>
                         </div>
+                        
                         <div class="col-sm-2">
                             <label class="form-label">Fecha DEPS: </label>
                             <input type="date" class="form-control" name="datoDEPS" autofocus required>
@@ -139,8 +141,8 @@
                                 ?> 
                             </select>
                         </div>
-                        <div class="col-sm-1">
-                            <label class="form-label">N° Personas: </label>
+                        <div class="col-sm-2">
+                            <label class="form-label">N° Personas:</label>
                             <input type="number" class="form-control" name="datoNoPersonas" autofocus required>
                         </div>
                         <div class="col-sm-1">

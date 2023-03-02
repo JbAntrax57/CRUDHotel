@@ -2,13 +2,11 @@
 
 <?php
     include_once "model/conexion.php";
-    $sentencia = $bd -> query("select * from usuario");
-    $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $sentencia = $bd -> query("select * from reservaciones");
+    $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
-<!-- <nav class="navbar navbar-dark bg-primary">
-</nav> -->
-<<head>
+<head>
     <link rel="stylesheet" href="css/styleGeneral.css">
 </head>
 <div class="margin_table">
@@ -74,47 +72,29 @@
             </div>
             <?php 
                 }
-            ?> 
-
-            <!-- fin alerta -->
-            
-            <input style="float: right;" type="button" onclick = "location='agregarUsuario.php'" value = "Agregar Usuario" class = "btn btn_general rounded mb-2" ></input>
-        <br><br>
+            ?>
+            <input style="float: right; type="button" onclick = "location='reservacion.php'" value = "Guardar" class = "btn btn_general rounded" ></input>
+<br><br>
             <div class="mt-2">
-                <div class="table_title rounded p-2">Lista de Usuarios</div>
+                <div class="table_title rounded p-2">Corte de Caja por Turno</div>
                 <div class="mx-auto">
-                
-                
-                <table class="table table-striped table-hover table-borderless">
+                    <!-- <table class="table align-middle table-responsive-xl"> -->
+                    <table class="table table-striped table-hover table-borderless">
                         <thead class="table_theme">
                             <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Direccion</th>
-                                <th scope="col">Turno</th>
-                                <th scope="col">Rol</th>
-                                <th scope="col" colspan="2">Opciones</th>
+                                <th scope="col">Folio</th>
+                                <th scope="col">Habitacion</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                             <?php 
-                                foreach($usuario as $dato){ 
+                                foreach($reservacion as $dato){ 
                             ?>
 
                              <tr>
-                                
-                                <td><?php echo $dato->nombre; ?></td>
-                                <td><?php echo $dato->telefono; ?></td>                 
-                                <td><?php echo $dato->email; ?></td>
-                                <td><?php echo $dato->direccion; ?></td>
-                                <td><?php echo $dato->turno; ?></td>
-                                <td><?php echo $dato->rol; ?></td>
-                                <td><a class="text-success" href="editarUsuarios.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminarUsuario.php?codigo=<?php echo $dato->idUsuario; ?>"><i class="bi bi-trash"></i></a></td>
-                               <!-- <td><a class="text-success" href="vista.php?codigo=<?//php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>-->
-                                <!-- <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?//php echo $dato->codigo; ?>"><i class="bi bi-trash"></i></a></td> -->
+                                <td scope="row"><?php echo $dato->no_folio; ?></td>
+                                <td><?php echo $dato->habitacion_id; ?></td>
                             </tr>
 
                             <?php 

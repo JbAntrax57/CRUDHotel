@@ -73,8 +73,9 @@
             <?php 
                 }
             ?>
-            <input type="button" onclick = "location='reservacion.php'" value = "Agregar Reservacion" class = "btn btn_general rounded" ></input>
-
+            <input style="float: right;" type="button" onclick = "location='reservacion.php'" value = "Agregar Reservacion" class = "btn btn_general rounded" ></input>
+            <button class="btn btn_general rounded" onclick = "location='excel.php'"><i class="bi bi-file-earmark-excel"></i></button>
+<br><br>
             <div class="mt-2">
                 <div class="table_title rounded p-2">LISTA DE RESERVACIONES</div>
                 <div class="mx-auto">

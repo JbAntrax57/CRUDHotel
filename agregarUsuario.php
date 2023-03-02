@@ -4,10 +4,12 @@
    
     //print_r($persona);
 ?>
-
+<head>
+    <link rel="stylesheet" href="css/styleGeneral.css">
+</head>
 <div class="container mt-5">
     <div class="row justify-content-center">
-<div class="col-md-4">
+<div class="col-md-12">
 <?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta'){
             ?>
@@ -65,38 +67,43 @@
                 }
             ?> 
 
+            <br><br> 
+<div class="table_title rounded p-2">Agregar Usuario</div>
+            <div class="card shadow_general">
             
-           
-            <div class="card">
-                <div class="card-header">
-                    Agregar Usuario:
-                </div>
                 <form class="p-4" method="POST" action="CreateUsuarios.php">
-                    <div class="mb-3">
+                
+                <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
+                    <div class="col-sm-3">
                         <label class="form-label">Nombre: </label>
                         <input type="text" class="form-control" name="datoNombre" required>
                     </div>
-                    <div class="mb-3">
+                    
+                    <div class="col-sm-3">
                         <label class="form-label">Apellido Paterno: </label>
                         <input type="text" class="form-control" name="datoApellido_pat" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="col-sm-3">
                         <label class="form-label">Apellido Materno: </label>
                         <input type="text" class="form-control" name="datoApellido_mat" required>
                     </div>
-                    <div class="mb-3">
+                    
+                    <div class="col-sm-2">
                         <label class="form-label">Telefono: </label>
                         <input type="text" class="form-control" name="datoTelefono" required>
                     </div>
-                    <div class="mb-3">
+                    </div>
+                    <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
+                    <div class="col-sm-2">
                         <label class="form-label">Correo Electronico: </label>
                         <input type="text" class="form-control" name="datoEmail" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="col-sm-3">
                         <label class="form-label">Direccion: </label>
                         <input type="text" class="form-control" name="datoDireccion" required>
                     </div>
-                    <div class="form-group mb-3">
+                  
+                    <div class="col-sm-2  mt-2">
                         <label for="inputState">Turno</label>
                         <select id="inputState" class="form-control" name="datoTurno">
                             <option selected disabled="true">Seleccionar...</option>
@@ -105,11 +112,11 @@
                             <option value = "nocturno">Nocturno</option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="col-sm-2">
                         <label class="form-label">Contraseña: </label>
                         <input type="text" class="form-control" name="datoContraseña" required>
                     </div>
-                    <div class="form-group mb-3">
+                    <div class="form-group col-sm-2 mt-2">
                         <label for="inputState">Rol</label>
                         <select id="inputState" class="form-control" name="datoRol">
                             <option selected disabled="true">Seleccionar...</option>
@@ -117,7 +124,8 @@
                             <option value = "usuario">Usuario</option>
                         </select>
                     </div>
-                    <div class="d-grid">
+                    </div>
+                    <div class="d-grid mt-3">
                     <input type="hidden" name="oculto" value="1">
                     <input type="submit" class="btn btn-primary" value="Registrar">
                     </div>
