@@ -26,6 +26,8 @@
 
 
     if ($resultado === TRUE) {
+        var_dump($sentencia[0]->habitacion_id);
+        die();
         header('Location: usuarios.php?mensaje=editado');
     } else {
         header('Location: index.php?mensaje=error');

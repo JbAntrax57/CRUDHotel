@@ -47,6 +47,10 @@
     $diff=date_diff($fecha1,$fecha2);
     $no_noches = $diff->format("%R%a");
 
+    if($fecha_llegada === $fecha_salida) {
+        $no_noches = 1;
+    }
+
     $fecha_reservacion = date("Y-m-d");
     
     $nombre = $_POST["datoNombre"];
