@@ -63,7 +63,18 @@
     ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches)]);
 
     if ($resultado === TRUE) {
-        header('Location: vista.php?mensaje=registrado');
+        $disponible = 0;
+        $sentencia = $bd -> query("select * from habitaciones where id = $habitacion");
+        $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
+        $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $habitacion]);
+        if($response === TRUE) {
+            header('Location: vista.php?mensaje=registrado');
+        } else {
+            header('Location: reservacion.php?mensaje=error');
+            exit();
+        }
     } else {
         header('Location: reservacion.php?mensaje=error');
         exit();
