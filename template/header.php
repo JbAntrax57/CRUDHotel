@@ -34,6 +34,7 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.php"><i class="bi bi-speedometer2"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
           </li>
+
           <!--<li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>-->
@@ -86,7 +87,9 @@
                 
             </ul>
           </li>
-
+<li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="login.php"><i class="bi bi-power"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesion</a>
+          </li>
        
         </ul>
         <form class="d-flex mt-3" role="search">
