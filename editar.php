@@ -18,6 +18,9 @@
     $sentencia = $bd->prepare("select * from reservaciones where idReservaciones = ?;");
     $sentencia->execute([$codigo]);
     $reservacion = $sentencia->fetch(PDO::FETCH_OBJ);
+
+    $sql = $bd -> query("select * from habitaciones where disponible = 1");
+    $habitaciones = $sql->fetchAll(PDO::FETCH_OBJ);
    // var_dump($reservacion);
     //$sentencia = $bd->query("select * from reservaciones where idReservaciones = ".$codigo.";");
     //$rows = $sentencia->fetchAll();
@@ -72,8 +75,15 @@
                     </div>
                     <div class="col-sm-3">
                         <label class="form-label">Habitacion: </label>
-                        <input type="text" class="form-control" name="datoHabitacion" autofocus required
-                        value="<?php echo $reservacion->habitacion_id; ?>">
+                        <select id="inputState" class="form-control" name="datoHabitacion">
+                            <?php 
+                                foreach ($habitaciones as $habitacion) {
+                            ?> 
+                                <option value="<?php echo $habitacion->id; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
+                            <?php 
+                                }
+                            ?> 
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <label class="form-label">Numero de Personas: </label>
@@ -93,7 +103,7 @@
                         value="<?php echo $reservacion->no_folio; ?>">
                     </div>
                     <div class="form-group col-sm-3 mb-3">
-                        <label for="inputState">Tipo Pago</label>
+                        <label for="inputState" class="form-label">Tipo Pago:</label>
                         <select id="inputState" class="form-control" name="datoTipoPago"
                         value="<?php echo $reservacion->tipo_pago; ?>">
                             <option disabled="true">Seleccionar...</option>
@@ -104,6 +114,16 @@
                             <option value = "Cortesia">Cortesia</option>
                         </select>
                     </div>
+                    </div>
+                    <div class="col-sm-12 input-group d-flex justify-content-between">
+                        <div class="col-sm-3 mb-3">
+                            <label for="form-label">Temporada: </label>
+                            <select id="inputState" class="form-control" name="datoTemporada">
+                                <option selected disabled="true">Seleccionar...</option>
+                                <option value = "alta">Alta</option>
+                                <option value = "baja">Baja</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="idReservaciones" value="<?php echo $reservacion->idReservaciones; ?>">

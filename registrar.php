@@ -3,7 +3,7 @@
     if(empty($_POST["datoNombre"]) 
     || empty($_POST["datoDEPS"]) || empty($_POST["datoTelefono"]) || empty($_POST["datoEmail"]) || empty($_POST["datoResidencia"])
     || empty($_POST["datoFechaLlegada"])|| empty($_POST["datoFechaSalida"])|| empty($_POST["datoHabitacion"])|| empty($_POST["datoNoPersonas"])
-    || empty($_POST["datoDeposito"])|| empty($_POST["datoFolio"]) || empty($_POST["datoTipoPago"])){
+    || empty($_POST["datoFolio"]) || empty($_POST["datoTipoPago"])){
         header('Location: index.php?mensaje=falta');
         exit();
     }
@@ -39,7 +39,10 @@
         if ($cont === 20) {
             $max_person['Bungalow '.$cont] = 4;
         }
-    }    
+    }
+
+    var_dump($_POST);
+    die();
 
     // Restar fechas para poder sacar los no_días 
     $fecha1 = date_create($fecha_llegada);
@@ -58,13 +61,24 @@
     $correo = $_POST["datoEmail"];
     $residencia = $_POST["datoResidencia"];
     $habitacion = $_POST["datoHabitacion"];
+
+    $sql = $bd -> query("select * from preciohabitacion where habitacion_id = $habitacion");
+    $price = $sql->fetchAll(PDO::FETCH_OBJ);
+
+    if($_POST['datoTemporada'] === 'alta') {
+        $total = $price[0]->tem_alta * $no_noches;
+    } else {
+        $total = $price[0]->tem_baja * $no_noches;
+    }
+
     $no_personas = $_POST["datoNoPersonas"];
-    $deposito = $_POST["datoDeposito"];
+    // $deposito = $_POST["datoDeposito"];
+    $deposito = 0;
     $no_folio = $_POST["datoFolio"];
     $tipo_pago = $_POST["datoTipoPago"];
-    $sentencia = $bd->prepare("INSERT INTO reservaciones(nombre, fecha_deps, num_telefono, email, lugar_residencia, fecha_llegada, fecha_salida, habitacion_id, no_personas, deposito, fecha_reservacion, tipo_pago, no_folio, no_noches) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+    $sentencia = $bd->prepare("INSERT INTO reservaciones(nombre, fecha_deps, num_telefono, email, lugar_residencia, fecha_llegada, fecha_salida, habitacion_id, no_personas, deposito, fecha_reservacion, tipo_pago, no_folio, no_noches, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
     $resultado = $sentencia->execute([$nombre,$deps,$telefono,$correo,$residencia,$fecha_llegada
-    ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches)]);
+    ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches), floatval($total)]);
 
     if ($resultado === TRUE) {
         $disponible = 0;
@@ -82,6 +96,10 @@
     } else {
         header('Location: reservacion.php?mensaje=error');
         exit();
+    }
+
+    public function getRoom($id) {
+        
     }
     
 ?>
