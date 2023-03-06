@@ -92,7 +92,7 @@
                     <div class="col-sm-12 input-group">
                         <div class="col-sm-1 float_right">
                             <label class="form-label">Folio: </label>
-                            <input value="<?php echo $reservacion[0]->no_folio+1; ?>" type="number" class="form-control" name="datoFolio" autofocus required readonly>
+                            <input value="<?php echo isset($reservacion[0]->no_folio) ? $reservacion[0]->no_folio+1 : 1; ?>" type="number" class="form-control" name="datoFolio" autofocus required readonly>
                         </div>
                     </div>
                     <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
@@ -150,7 +150,7 @@
                             <input type="number" class="form-control" name="datoDeposito" autofocus required>
                         </div>
                     </div>
-                    <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
+                    <div class="col-sm-12 input-group mt-3 d-flex">
                         <div class="col-sm-2">
                             <label for="form-label">Tipo Pago: </label>
                             <select id="inputState" class="form-control" name="datoTipoPago">
@@ -160,6 +160,15 @@
                                 <option value = "Transferencia">Transferencia</option>
                                 <option value = "Credito">Credito</option>
                                 <option value = "Cortesia">Cortesia</option>
+                            </select>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-2">
+                            <label for="form-label">Temporada: </label>
+                            <select id="inputState" class="form-control" name="datoTemporada">
+                                <option selected disabled="true">Seleccionar...</option>
+                                <option value = "alta">Alta</option>
+                                <option value = "baja">Baja</option>
                             </select>
                         </div>
                     </div>
