@@ -121,7 +121,7 @@
                                 <td><?php echo $dato->tipo_pago; ?></td>
                                 <td><?php echo $dato->no_noches; ?></td>
                                 <td><?php echo $dato->total; ?></td>
-                                <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->idReservaciones; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->idReservaciones; ?>&numhab=<?php echo $dato->habitacion_id; ?>"><i class="bi bi-pencil-square"></i></a></td>
                                 <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->idReservaciones; ?>&habitacion=<?php echo $dato->habitacion_id; ?>"><i class="bi bi-trash"></i></a></td>
                                <!-- <td><a class="text-success" href="vista.php?codigo=<?//php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>-->
                                 <!-- <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->idReservaciones; ?>"><i class="bi bi-trash"></i></a></td> -->

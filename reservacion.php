@@ -1,11 +1,24 @@
 <?php include 'template/header.php' ?>
 <?php
     include_once "model/conexion.php";
+
+    $sql = $bd -> query("select * from reservaciones order by idReservaciones desc");
+    $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
+    
+    foreach ($reservacion as $r) {
+        //var_dump($r->nombre);
+        //die();
+        $disponible = 0;
+    $sentencia = $bd -> query("select * from habitaciones where id = $r->habitacion_id");
+    $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+    $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
+    $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $r->habitacion_id]);
+
+    }
+
     $sentencia = $bd -> query("select * from habitaciones where disponible = 1");
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
-
-    $sql = $bd -> query("select no_folio from reservaciones order by idReservaciones desc");
-    $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
 <head>

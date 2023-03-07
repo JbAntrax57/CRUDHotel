@@ -1,3 +1,23 @@
+<?php
+// //   session_start();
+
+//   require 'model/conexion.php';
+
+//   $conexion =mysqli_connect("localhost","root","","hotel");
+// //   $conexion =mysqli_connect("localhost","id17673459_root","POPOlolo22POPOlolo22@","id17673459_didisee");
+//   if (isset($_SESSION['user_id'])) {
+//     $records = $conn->prepare('SELECT idUsuario, nombre, password FROM usuario WHERE idUsuario = :id');
+//     $records->bindParam(':id', $_SESSION['user_id']);
+//     $records->execute();
+//     $results = $records->fetch(PDO::FETCH_ASSOC);
+// echo $results;
+//     $user = null;
+
+//     if (count($results) > 0) {
+//       $user = $results;
+//     }
+//   }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,13 +46,14 @@
     </button>
     <div class="offcanvas offcanvas-start bg_menu text-bg-primary" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: white;">la gruesa pa mi primo</h5>
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: white;">Bienvenido...</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <li><a class="nav-link"><?= $user['nombre']; ?></a></li>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php"><i class="bi bi-speedometer2"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
+            <a class="nav-link active" aria-current="page" href="index.php"><i class="bi bi-house"></i>&nbsp;&nbsp;&nbsp;Inicio</a>
           </li>
 
           <!--<li class="nav-item">
@@ -48,7 +69,7 @@
             </ul>
           </li>
 
-          <li class="nav-item dropdown">
+         <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-file-earmark-spreadsheet"></i>&nbsp;&nbsp;&nbsp;Reportes
             </a>
@@ -56,7 +77,7 @@
               <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i>&nbsp;&nbsp;&nbsp;Estatus de Reporte</a></li>
             </ul>
           </li>
-
+-->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-door-open"></i>&nbsp;&nbsp;&nbsp;Habitaciones

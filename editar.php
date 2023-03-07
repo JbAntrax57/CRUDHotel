@@ -14,6 +14,13 @@
 
     include_once 'model/conexion.php';
     $codigo = $_GET['codigo'];
+    $habitacion = $_GET['numhab'];
+    $disponible = 1;
+    $sentencia = $bd -> query("select * from habitaciones where id = $habitacion");
+    $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+    $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
+    $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $habitacion]);
 
     $sentencia = $bd->prepare("select * from reservaciones where idReservaciones = ?;");
     $sentencia->execute([$codigo]);

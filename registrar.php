@@ -41,8 +41,7 @@
         }
     }
 
-    var_dump($_POST);
-    die();
+
 
     // Restar fechas para poder sacar los no_días 
     $fecha1 = date_create($fecha_llegada);
@@ -98,8 +97,8 @@
         exit();
     }
 
-    public function getRoom($id) {
+    //public function getRoom($id) {
         
-    }
+    //}
     
 ?>

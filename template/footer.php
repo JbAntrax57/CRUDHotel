@@ -1,9 +1,9 @@
 <footer class="container-fluid bg-dark fixed-bottom">
-        <div class="row">
+        <!--<div class="row">
             <div class="col-md text-light text-center py-3">
             <i class="bi bi-heart-fill"></i> Desarrollado por PEKEREKE y la soberbia <i class="bi bi-heart-fill"></i>
             </div>
-        </div>
+        </div>-->
     </footer>
       
     <!-- Bootstrap JavaScript Libraries -->

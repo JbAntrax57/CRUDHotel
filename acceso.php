@@ -10,7 +10,8 @@
         //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
         //$count = mysqli_num_rows($result);  
         $filas = $resultado->fetchAll();
-
+        $GLOBALS['username'];
+        
         if (count($filas)) {
             header('Location: index.php?mensaje=registrado');
         } else {

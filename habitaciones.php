@@ -1,8 +1,27 @@
 <?php include 'template/header.php' ?>
 <?php
     include_once "model/conexion.php";
+
+    $sql = $bd -> query("select * from reservaciones order by idReservaciones desc");
+    $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
+    
+    foreach ($reservacion as $r) {
+        //var_dump($r->nombre);
+        //die();
+        $disponible = 0;
+    $sentencia = $bd -> query("select * from habitaciones where id = $r->habitacion_id");
+    $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+    $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
+    $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $r->habitacion_id]);
+
+    }
+
     $sentencia = $bd -> query("select *, habitaciones.id as hab_id from habitaciones JOIN preciohabitacion ON habitaciones.id = preciohabitacion.habitacion_id");
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+
+
 ?>
 <head>
 <link rel="stylesheet" href="css/styleRooms.css">
@@ -24,8 +43,8 @@
                                     <p class="card-text texto-izq"><?php echo ($habitacion->tipo_id === 1) ? 'Tipo Habitación: 2 Matrimoniales' : ''?></p>
                                     <p class="card-text texto-izq"><?php echo ($habitacion->disponible === 0) ? 'No disponible' : 'Disponible'?></p>
                                     <p class="card-text texto-izq"><?php echo ($habitacion->planta === 0) ? 'Planta baja' : 'Planta alta'?></p>
-                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_alta) ? 'Temporada Alta: ' . $habitacion->tem_alta : 'Temporada Alta: ' . 0 ?></p>
-                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_baja) ? 'Temporada Baja: ' . $habitacion->tem_baja : 'Temporada Baja: ' . 0 ?></p>
+                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_alta) ? 'Temporada Alta: $' . $habitacion->tem_alta : 'Temporada Alta: $' . 0 ?></p>
+                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_baja) ? 'Temporada Baja: $' . $habitacion->tem_baja : 'Temporada Baja: $' . 0 ?></p>
                                 </div>
                             </div>
                         </div>
@@ -41,8 +60,8 @@
                                 <p class="card-text texto-izq"><?php echo ($habitacion->tipo_id === 1) ? 'Tipo Habitación: 2 Matrimoniales' : ''?></p>
                                     <p class="card-text texto-izq"><?php echo ($habitacion->disponible === 1) ? 'Disponible' : 'No disponible'?></p>
                                     <p class="card-text texto-izq"><?php echo ($habitacion->planta === 0) ? 'Planta baja' : 'Planta alta'?></p>
-                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_alta) ? 'Temporada Alta: ' . $habitacion->tem_alta : 'Temporada Alta: ' . 0 ?></p>
-                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_baja) ? 'Temporada Baja: ' . $habitacion->tem_baja : 'Temporada Baja: ' . 0 ?></p>
+                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_alta) ? 'Temporada Alta: $' . $habitacion->tem_alta : 'Temporada Alta: $' . 0 ?></p>
+                                    <p class="card-text texto-izq"><?php echo isset($habitacion->tem_baja) ? 'Temporada Baja: $' . $habitacion->tem_baja : 'Temporada Baja: $' . 0 ?></p>
                                     <div class="row">
                                         <div class="col-lg-12 text-right">
                                             <!-- <a href="#" title="check"><i class="bi bi-bag-check-fill"></i></a> -->
