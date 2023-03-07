@@ -48,7 +48,7 @@
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: white;">Bienvenido...</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        <li><a class="nav-link"><?= $user['nombre']; ?></a></li>
+        <!--<li><a class="nav-link"><?//= $user['nombre']; ?></a></li>-->
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
