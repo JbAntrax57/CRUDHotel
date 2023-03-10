@@ -1,5 +1,5 @@
 <?php
-    //print_r($_POST);
+    date_default_timezone_set('America/Mexico_City');
     if(empty($_POST["datoNombre"]) 
     || empty($_POST["datoDEPS"]) || empty($_POST["datoTelefono"]) || empty($_POST["datoEmail"]) || empty($_POST["datoResidencia"])
     || empty($_POST["datoFechaLlegada"])|| empty($_POST["datoFechaSalida"])|| empty($_POST["datoHabitacion"])|| empty($_POST["datoNoPersonas"])
@@ -17,30 +17,45 @@
         header('Location: reservacion.php?mensaje=fecha');
         exit();
     }
-
-    // Proceso de llenado para la cantidad de las personas
-    $max_person = array();
-    for ($cont = 1; $cont <= 20; $cont++) {
-        if ($cont != 7 && $cont <= 11) {
-            $max_person['Habitacion '.$cont] = 4;
-        }
-        if ($cont === 7 || $cont === 17 || $cont === 18) {
-            $max_person['Habitacion '.$cont] = 5;
-        }
-        if ($cont === 13 || $cont === 14) {
-            $max_person['Habitacion '.$cont] = 1;
-        }
-        if ($cont === 15 || $cont === 16) {
-            $max_person['Habitacion '.$cont] = 6;
-        }
-        if ($cont === 19) {
-            $max_person['Bungalow '.$cont] = 5;
-        }
-        if ($cont === 20) {
-            $max_person['Bungalow '.$cont] = 4;
-        }
+ 
+    
+    if ($fecha_llegada < date("Y-m-d") ) {
+        header('Location: reservacion.php?mensaje=fmenor');
+        exit();
     }
 
+    if ($deps < $fecha_llegada || $deps > $fecha_salida ) {
+        header('Location: reservacion.php?mensaje=fdeps');
+        exit();
+    }
+    // Proceso de llenado para la cantidad de las personas
+    // $max_person = array();
+    // for ($cont = 1; $cont <= 20; $cont++) {
+    //     if ($cont != 7 && $cont <= 11) {
+    //         $max_person['Habitacion '.$cont] = 4;
+    //     }
+    //     if ($cont === 7 || $cont === 17 || $cont === 18) {
+    //         $max_person['Habitacion '.$cont] = 5;
+    //     }
+    //     if ($cont === 13 || $cont === 14) {
+    //         $max_person['Habitacion '.$cont] = 1;
+    //     }
+    //     if ($cont === 15 || $cont === 16) {
+    //         $max_person['Habitacion '.$cont] = 6;
+    //     }
+    //     if ($cont === 19) {
+    //         $max_person['Bungalow '.$cont] = 5;
+    //     }
+    //     if ($cont === 20) {
+    //         $max_person['Bungalow '.$cont] = 4;
+    //     }
+    // }
+   
+
+    // if($no_personas > $habitacion || $no_personas){
+    //     header('Location: reservacion.php?mensaje=npersonas');
+    //     exit();
+    // }
 
 
     // Restar fechas para poder sacar los no_días 
@@ -60,7 +75,9 @@
     $correo = $_POST["datoEmail"];
     $residencia = $_POST["datoResidencia"];
     $habitacion = $_POST["datoHabitacion"];
-
+    $rom = getRoom($habitacion, $bd);
+    $personas = maxper($rom[0]);
+    
     $sql = $bd -> query("select * from preciohabitacion where habitacion_id = $habitacion");
     $price = $sql->fetchAll(PDO::FETCH_OBJ);
 
@@ -71,6 +88,10 @@
     }
 
     $no_personas = $_POST["datoNoPersonas"];
+    if($no_personas>$personas ||$no_personas < 1){
+        header('Location: reservacion.php?mensaje=npersonas');
+        exit();
+    }
     // $deposito = $_POST["datoDeposito"];
     $deposito = 0;
     $no_folio = $_POST["datoFolio"];
@@ -81,9 +102,7 @@
 
     if ($resultado === TRUE) {
         $disponible = 0;
-        $sentencia = $bd -> query("select * from habitaciones where id = $habitacion");
-        $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
-
+        $rom = getRoom($habitacion, $bd);
         $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
         $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $habitacion]);
         if($response === TRUE) {
@@ -97,8 +116,25 @@
         exit();
     }
 
-    //public function getRoom($id) {
-        
-    //}
+    function getRoom($habitacion, $bd) {
+
+        $sentencia = $bd -> query("select * from habitaciones where id = $habitacion");
+        $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $rom;
+    }
+    function maxper($rom){
+        if($rom->tipo_id==1){
+            return 4;
+        }
+        if($rom->tipo_id==2){
+            return 5;
+        }
+        if($rom->tipo_id==3){
+            return 2;
+        }
+        if($rom->tipo_id==4){
+            return 6;
+        }
+    }
     
 ?>

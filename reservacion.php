@@ -95,6 +95,39 @@
             <?php 
                 }
             ?>
+
+<?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'fdeps'){
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> La fecha DEPS tiene que estar entre las fechas de la reservacion.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?>
+
+<?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'npersonas'){
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> Este numero de personas no esta permitido.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?>
+
+            <?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'fmenor'){
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> La fecha de entrada no puede ser menor a la fecha actual.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?>
             
             <div class="table_title rounded p-2">FORMULARIO RESERVACIÓN</div>
             <div class="card shadow_general">
@@ -166,8 +199,8 @@
                     <div class="col-sm-12 input-group mt-3 d-flex">
                         <div class="col-sm-2">
                             <label for="form-label">Tipo Pago: </label>
-                            <select id="inputState" class="form-control" name="datoTipoPago">
-                                <option selected disabled="true">Seleccionar...</option>
+                            <select id="inputState" class="form-control" name="datoTipoPago" autofocus required>
+                                <option value="" selected disabled="true">Seleccionar...</option>
                                 <option value = "Efectivo">Efectivo</option>
                                 <option value = "Tarjeta">Tarjeta</option>
                                 <option value = "Transferencia">Transferencia</option>
@@ -178,8 +211,8 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="col-sm-2">
                             <label for="form-label">Temporada: </label>
-                            <select id="inputState" class="form-control" name="datoTemporada">
-                                <option selected disabled="true">Seleccionar...</option>
+                            <select id="inputState" class="form-control" name="datoTemporada" autofocus required>
+                                <option value=""  selected disabled="true">Seleccionar...</option>
                                 <option value = "alta">Alta</option>
                                 <option value = "baja">Baja</option>
                             </select>

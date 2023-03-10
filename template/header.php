@@ -88,14 +88,14 @@
           </li>
 
 
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-bell-concierge"></i>&nbsp;&nbsp;&nbsp;Recepcion
             </a>
             <ul class="dropdown-menu menu-bg-light">
               <li><a class="dropdown-item" href="#"><i class="bi bi-vector-pen"></i>&nbsp;&nbsp;&nbsp;Caja</a></li>
             </ul>
-          </li>
+          </li> -->
 
 
           <li class="nav-item dropdown">
