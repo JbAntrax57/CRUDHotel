@@ -1,12 +1,16 @@
-<?php include 'template/header.php' ?>
+<?php include 'template/header.php';
+if($rol=='usuario'){
+    header('Location: index.php');
+    exit();
+}
+?>
 
 <?php
     include_once "model/conexion.php";
     $sentencia = $bd -> query("select * from usuario");
     $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
-    $sql = $bd -> query("select * from usuario where nombre = '$GLOBALS[username]'");
-    $reservaciones = $sql->fetchAll(PDO::FETCH_OBJ);
+    
     
 ?>
 <!-- <nav class="navbar navbar-dark bg-primary">

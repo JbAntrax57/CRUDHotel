@@ -65,7 +65,9 @@
     $no_noches = $diff->format("%R%a");
 
     if($fecha_llegada === $fecha_salida) {
-        $no_noches = 1;
+        header('Location: reservacion.php?mensaje=fdia');
+        exit();
+
     }
 
     $fecha_reservacion = date("Y-m-d");
@@ -100,8 +102,10 @@
     $resultado = $sentencia->execute([$nombre,$deps,$telefono,$correo,$residencia,$fecha_llegada
     ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches), floatval($total)]);
 
+
+
     if ($resultado === TRUE) {
-        $disponible = 0;
+        $disponible = get_estatus($fecha_llegada,$fecha_salida);
         $rom = getRoom($habitacion, $bd);
         $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
         $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $habitacion]);
@@ -122,7 +126,7 @@
         $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $rom;
     }
-    function maxper($rom){
+        function maxper($rom){
         if($rom->tipo_id==1){
             return 4;
         }
@@ -135,6 +139,17 @@
         if($rom->tipo_id==4){
             return 6;
         }
+
     }
-    
+   function get_estatus($fecha_llegada,$fecha_salida){
+   
+    if(date("Y-m-d") == $fecha_llegada) {
+             
+        return 0;
+    }else {
+        return 1;
+    }
+        
+   }
+
 ?>

@@ -134,7 +134,7 @@
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="idReservaciones" value="<?php echo $reservacion->idReservaciones; ?>">
-                        <input type="submit" class="btn btn-primary" value="Editar">
+                        <input type="submit" class="btn btn-primary" value="Actualizar">
                     </div>
                 </form>
             </div>

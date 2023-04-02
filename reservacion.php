@@ -106,7 +106,16 @@
             <?php 
                 }
             ?>
-
+<?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'fdia'){
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> Debe reserservarse por al menos 24 Horas.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?>
 <?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'npersonas'){
             ?>

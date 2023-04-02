@@ -90,7 +90,7 @@
                     </div>
                     <div class="d-grid mt-3">
                         <input type="hidden" name="codigo" value="<?php echo $usuarios->idUsuario; ?>">
-                        <input type="submit" class="btn btn-primary" value="Editar">
+                        <input type="submit" class="btn btn-primary" value="Actualizar">
                     </div>
                 </form>
             </div>

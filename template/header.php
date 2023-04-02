@@ -1,6 +1,9 @@
 <?php
-// //   session_start();
 
+  session_start();
+  if (!isset($_SESSION['rol'])) {
+    header('Location: login.php');
+  }
 //   require 'model/conexion.php';
 
 //   $conexion =mysqli_connect("localhost","root","","hotel");
@@ -96,7 +99,9 @@
               <li><a class="dropdown-item" href="#"><i class="bi bi-vector-pen"></i>&nbsp;&nbsp;&nbsp;Caja</a></li>
             </ul>
           </li> -->
-
+<?php
+if($_SESSION['rol']!='usuario'){
+?>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -108,8 +113,13 @@
                 
             </ul>
           </li>
+  <?php  
+ }       
+?>
+
+
 <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="login.php"><i class="bi bi-power"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesion</a>
+            <a class="nav-link active" aria-current="page" href="sesionOut.php"><i class="bi bi-power"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesion</a>
           </li>
        
         </ul>
