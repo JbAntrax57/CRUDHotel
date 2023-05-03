@@ -2,14 +2,14 @@
 <?php
     include_once "model/conexion.php";
    $numhab = $_GET['numhab'];
-   $cod = $_GET['codigo'];
+   //$cod = $_GET['codigo'];
     //print_r($persona);
     $sentencia = $bd->prepare("select * from reservaciones where idReservaciones = ?;");
-    $sentencia->execute([$cod]);
+    //$sentencia->execute([$cod]);
     $reservacion = $sentencia->fetch(PDO::FETCH_OBJ);
 
     $sentencia = $bd->prepare("select * from pagos where reservacion_id = ?;");
-    $sentencia->execute([$cod]);
+    //$sentencia->execute([$cod]);
     $pagos = $sentencia->fetchAll(PDO::FETCH_OBJ);
     
     
@@ -86,8 +86,9 @@
             <div class="col-sm-12 input-group">
                         <div class="col-sm-1 float_right "style = "padding-right: 2%;">
                             <label class="form-label">Folio: </label>
-                            <input value="<?php echo $reservacion->no_folio; ?>" type="number" class="form-control" name="datoFolio" readonly>
+                            
                         </div>
+                        <!-- <input value="<?php //echo $reservacion->no_folio; ?>" type="number" class="form-control" name="datoFolio" readonly> -->
                     </div>
                 <form class="p-4" method="POST" action="registrarPago.php">
                 
@@ -95,32 +96,36 @@
                     <div class="col-sm-3">
                         <label class="form-label">Nombre Reservacion: </label>
                         <input type="text" class="form-control" name="datoNombre" required  readonly
-                        value="<?php echo $reservacion->nombre; ?>">
+                        >
                     </div>
+                    <!-- value="<?php //echo $reservacion->nombre; ?>"> -->
                     
                     <div class="col-sm-3">
                         <label class="form-label">Total a Pagar: </label>
                         <input type="text" class="form-control" name="datoTotal" required  readonly
-                        value="<?php echo $reservacion->total; ?>">
+                        >
                     </div>
+                    <!-- value="<?php //echo $reservacion->total; ?>" -->
+
                     <?php 
                     
-                    if(isset($pagos)){
-                        $restante = $reservacion->total;
+                    // if(isset($pagos)){
+                    //     $restante = $reservacion->total;
                          
-                        foreach (( array) $pagos as $posicion => $pago ) {
-                            //var_dump($pago->monto);
-                           // die();
-                           $restante -= $pago->monto;
-                        }
+                    //     foreach (( array) $pagos as $posicion => $pago ) {
+                    //         //var_dump($pago->monto);
+                    //        // die();
+                    //        $restante -= $pago->monto;
+                    //     }
                     ?>
                     <div class="col-sm-3">
                         <label class="form-label">Saldo Restante: </label>
                         <input type="text" class="form-control" name="datoSaldoR" required  readonly
-                        value="<?php echo $restante; ?>">
+                        >
                     </div>
+                    <!-- value="<?php //echo $restante; ?>" -->
                     <?php 
-                        }
+                    //    }
                     //}                    
                     ?>
                     
@@ -130,8 +135,9 @@
                     </div>
                     <div class="col-sm-3">
                         <input type="hidden" class="form-control" name="datoId" required  readonly
-                        value="<?php echo $reservacion->idReservaciones; ?>">
+                       >
                     </div>
+                    <!-- value="<?php //echo $reservacion->idReservaciones; ?>" -->
                     </div>
                     <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
                     </div>

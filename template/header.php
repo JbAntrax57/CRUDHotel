@@ -91,14 +91,19 @@
           </li>
 
 
-          <!-- <li class="nav-item dropdown">
+        
+
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-bell-concierge"></i>&nbsp;&nbsp;&nbsp;Recepcion
             </a>
             <ul class="dropdown-menu menu-bg-light">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-vector-pen"></i>&nbsp;&nbsp;&nbsp;Caja</a></li>
+              <li><a class="dropdown-item" href="corte_caja.php"><i class="bi bi-vector-pen"></i>&nbsp;&nbsp;&nbsp;Corte de Caja</a></li>
+              <li><a class="dropdown-item" href="caja.php"><i class="bi bi-safe"></i>&nbsp;&nbsp;&nbsp;Deposito Caja</a></li>
+              <li><a class="dropdown-item" href="gastosCaja.php"><i class="bi bi-cash-coin"></i>&nbsp;&nbsp;&nbsp;Pagos Caja</a></li>
+           
             </ul>
-          </li> -->
+          </li> 
 <?php
 if($_SESSION['rol']!='usuario'){
 ?>

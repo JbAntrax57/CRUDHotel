@@ -2,14 +2,14 @@
 <?php
     include_once "model/conexion.php";
    $numhab = $_GET['numhab'];
-   $cod = $_GET['codigo'];
+   //$cod = $_GET['codigo'];
     //print_r($persona);
     $sentencia = $bd->prepare("select * from reservaciones where idReservaciones = ?;");
-    $sentencia->execute([$cod]);
+    //$sentencia->execute([$cod]);
     $reservacion = $sentencia->fetch(PDO::FETCH_OBJ);
 
     $sentencia = $bd->prepare("select * from pagos where reservacion_id = ?;");
-    $sentencia->execute([$cod]);
+    //$sentencia->execute([$cod]);
     $pagos = $sentencia->fetchAll(PDO::FETCH_OBJ);
     
     
@@ -33,10 +33,10 @@
             ?>
 
 <?php 
-                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'registrado'){
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'creado'){
             ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Registrado!</strong> Se agregaron los datos.
+            <strong>Registrado!</strong> Se agrego el gasto correctame.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php 
@@ -81,66 +81,32 @@
 
 
             <br><br> 
-<div class="table_title rounded p-2">Agregar Pago</div>
+<div class="table_title rounded p-2">Agregar Gastos</div>
             <div class="card shadow_general">
-            <div class="col-sm-12 input-group">
-                        <div class="col-sm-1 float_right "style = "padding-right: 2%;">
-                            <label class="form-label">Folio: </label>
-                            <input value="<?php echo $reservacion->no_folio; ?>" type="number" class="form-control" name="datoFolio" readonly>
-                        </div>
-                    </div>
-                <form class="p-4" method="POST" action="registrarPago.php">
+            
+                        
+                        
+                <form class="p-4" method="POST" action="agregarGastos.php">
+                <div class="row" >
+
                 
-                <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
-                    <div class="col-sm-3">
-                        <label class="form-label">Nombre Reservacion: </label>
-                        <input type="text" class="form-control" name="datoNombre" required  readonly
-                        value="<?php echo $reservacion->nombre; ?>">
+                
+                    <div class="col-8">
+                        <label class="form-label">Descripcion del Gasto: </label>
+                        <input type="text" class="form-control" name="concepto" required>
                     </div>
-                    
-                    <div class="col-sm-3">
-                        <label class="form-label">Total a Pagar: </label>
-                        <input type="text" class="form-control" name="datoTotal" required  readonly
-                        value="<?php echo $reservacion->total; ?>">
-                    </div>
-                    <?php 
-                    
-                    if(isset($pagos)){
-                        $restante = $reservacion->total;
-                         
-                        foreach (( array) $pagos as $posicion => $pago ) {
-                            //var_dump($pago->monto);
-                           // die();
-                           $restante -= $pago->monto;
-                        }
-                    ?>
-                    <div class="col-sm-3">
-                        <label class="form-label">Saldo Restante: </label>
-                        <input type="text" class="form-control" name="datoSaldoR" required  readonly
-                        value="<?php echo $restante; ?>">
-                    </div>
-                    <?php 
-                        }
-                    //}                    
-                    ?>
-                    
-                    <div class="col-sm-2">
+                    <div class="col-4">
                         <label class="form-label">Monto: </label>
-                        <input type="number" class="form-control" name="datoMonto" required>
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="hidden" class="form-control" name="datoId" required  readonly
-                        value="<?php echo $reservacion->idReservaciones; ?>">
-                    </div>
-                    </div>
-                    <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
+                        <input type="number" class="form-control" name="importe" required>
+                    </div> 
                     </div>
                     <div class="d-grid mt-3">
                     <input type="hidden" name="oculto" value="1">
                     <input type="submit" class="btn btn-primary" value="Registrar">
+                    
                     </div>
                 </form>
-            </div>
+            
         </div>
     </div>
 </div>

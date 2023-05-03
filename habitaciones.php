@@ -2,18 +2,23 @@
 <?php
     include_once "model/conexion.php";
     date_default_timezone_set('America/Mexico_City');
-    $sql = $bd -> query("select * from reservaciones order by idReservaciones desc");
+    $sql = $bd -> query("select * from reservaciones order by idReservaciones asc");
     $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
     
     foreach ($reservacion as $r) {
+        
         if ($r->fecha_llegada <= date("Y-m-d") && $r->fecha_salida >= date("Y-m-d")){
             $disponible = 0;
-            var_dump($r->habitacion_id. ' '. $disponible );
-            var_dump($r->fecha_llegada. ' '. $r->fecha_salida );
-            var_dump(date("Y-m-d"));
+            //var_dump("dentro");
+           // die();
+            // var_dump($r->habitacion_id. ' '. $disponible );
+            // var_dump($r->fecha_llegada. ' '. $r->fecha_salida );
+            // var_dump(date("Y-m-d"));
         }else{
             $disponible = 1;
-            var_dump($r->habitacion_id. ' '. $disponible);   
+            //var_dump($r->habitacion_id. ' '. $disponible);   
+            //var_dump($r->fecha_llegada. ' '. $r->fecha_salida);
+            //var_dump(date("Y-m-d"));
         }
     $sentencia = $bd -> query("select * from habitaciones where id = $r->habitacion_id");
     $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -22,7 +27,7 @@
     $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $r->habitacion_id]);
 
     }
-    
+    //die();
 
     $sentencia = $bd -> query("select *, habitaciones.id as hab_id from habitaciones JOIN preciohabitacion ON habitaciones.id = preciohabitacion.habitacion_id");
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);

@@ -6,9 +6,15 @@
     $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
     
     foreach ($reservacion as $r) {
-        //var_dump($r->nombre);
-        //die();
-        $disponible = 0;
+        if ($r->fecha_llegada <= date("Y-m-d") && $r->fecha_salida >= date("Y-m-d")){
+            $disponible = 0;
+            // var_dump($r->habitacion_id. ' '. $disponible );
+            // var_dump($r->fecha_llegada. ' '. $r->fecha_salida );
+            // var_dump(date("Y-m-d"));
+        }else{
+            $disponible = 1;
+            //var_dump($r->habitacion_id. ' '. $disponible);   
+        }
     $sentencia = $bd -> query("select * from habitaciones where id = $r->habitacion_id");
     $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
@@ -200,10 +206,10 @@
                             <label class="form-label">N° Personas:</label>
                             <input type="number" class="form-control" name="datoNoPersonas" autofocus required>
                         </div>
-                        <div class="col-sm-1">
+                        <!-- <div class="col-sm-1">
                             <label class="form-label">Deposito: </label>
                             <input type="number" class="form-control" name="datoDeposito" autofocus required>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-sm-12 input-group mt-3 d-flex">
                         <div class="col-sm-2">

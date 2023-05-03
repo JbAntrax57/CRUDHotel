@@ -114,21 +114,27 @@
                         <select id="inputState" class="form-control" name="datoTipoPago"
                         value="<?php echo $reservacion->tipo_pago; ?>">
                             <option disabled="true">Seleccionar...</option>
-                            <option value = "Efectivo">Efectivo</option>
-                            <option value = "Tarjeta">Tarjeta</option>
-                            <option value = "Transferencia">Transferencia</option>
-                            <option value = "Credito">Credito</option>
-                            <option value = "Cortesia">Cortesia</option>
-                        </select>
+                            <option value ="Efectivo"<?php echo isset($reservacion->tipo_pago) && $reservacion->tipo_pago == "Efectivo" ? "selected" : ''?>>Efectivo</option>
+                            <option value ="Tarjeta"<?php echo isset($reservacion->tipo_pago) && $reservacion->tipo_pago == "Tarjeta" ? "selected" : ''?>>Tarjeta</option>
+                            <option value ="Transferencia"<?php echo isset($reservacion->tipo_pago) && $reservacion->tipo_pago == "Transferencia" ? "selected" : ''?>>Transferencia</option>
+                            <option value ="Credito"<?php echo isset($reservacion->tipo_pago) && $reservacion->tipo_pago == "Credito" ? "selected" : ''?>>Credito</option>
+                            <option value ="Cortesia"<?php echo isset($reservacion->tipo_pago) && $reservacion->tipo_pago == "Cortesia" ? "selected" : ''?>>Cortesia</option>
+                            
+                            
+                           </select>
                     </div>
                     </div>
                     <div class="col-sm-12 input-group d-flex justify-content-between">
                         <div class="col-sm-3 mb-3">
                             <label for="form-label">Temporada: </label>
-                            <select id="inputState" class="form-control" name="datoTemporada">
-                                <option selected disabled="true">Seleccionar...</option>
+                            <select id="inputState" class="form-control" name="datoTemporada"
+                            value="<?php echo $reservacion->temporada; ?>">
+                                <option disabled="true">Seleccionar...</option>
                                 <option value = "alta">Alta</option>
                                 <option value = "baja">Baja</option>
+                                <option value ="alta"<?php echo isset($reservacion->temporada) && $reservacion->temporada == "alta" ? "selected" : ''?>>Alta</option>
+                                <option value ="baja"<?php echo isset($reservacion->temporada) && $reservacion->temporada == "baja" ? "selected" : ''?>>Baja</option>
+                            
                             </select>
                         </div>
                     </div>

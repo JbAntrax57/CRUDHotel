@@ -53,10 +53,51 @@
 
 
     if ($resultado === TRUE) {
-        header('Location: vista.php?mensaje=editado');
+        $disponible = get_estatus($fecha_llegada,$fecha_salida);
+        $rom = getRoom($habitacion, $bd);
+        $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
+        $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $habitacion]);
+        if($response === TRUE) {
+            header('Location: vista.php?mensaje=editado');
+        } else {
+            header('Location: reservacion.php?mensaje=error');
+            exit();
+        }
     } else {
-        header('Location: index.php?mensaje=error');
+        header('Location: reservacion.php?mensaje=error');
         exit();
     }
-    
+
+    function getRoom($habitacion, $bd) {
+
+        $sentencia = $bd -> query("select * from habitaciones where id = $habitacion");
+        $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $rom;
+    }
+        function maxper($rom){
+        if($rom->tipo_id==1){
+            return 4;
+        }
+        if($rom->tipo_id==2){
+            return 5;
+        }
+        if($rom->tipo_id==3){
+            return 2;
+        }
+        if($rom->tipo_id==4){
+            return 6;
+        }
+
+    }
+   function get_estatus($fecha_llegada,$fecha_salida){
+   
+    if(date("Y-m-d") == $fecha_llegada) {
+             
+        return 0;
+    }else {
+        return 1;
+    }
+        
+   }
+
 ?>

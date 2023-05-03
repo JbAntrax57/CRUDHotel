@@ -2,7 +2,7 @@
 
 <?php
     include_once "model/conexion.php";
-    $sentencia = $bd -> query("select reservaciones.*, habitaciones.nom_habitacion from reservaciones JOIN habitaciones ON id = reservaciones.habitacion_id");
+    $sentencia = $bd -> query("select reservaciones.*, habitaciones.nom_habitacion from reservaciones JOIN habitaciones ON id = reservaciones.habitacion_id order by reservaciones.idReservaciones desc");
     $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
@@ -62,6 +62,46 @@
                 }
             ?> 
 
+<?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'cantidad'){
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> La cantidad no puede ser menor a la mitad del total.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?> 
+<?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'errcant'){
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> La cantidad debe coincidir con el restante a pagar.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?> 
+            <?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'pagado'){
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> Monto Pagado.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?> 
+<?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'correcto'){
+            ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Correcto!</strong> Se agrego el pago correctamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?> 
 
             <?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'eliminado'){
@@ -73,15 +113,18 @@
             <?php 
                 }
             ?>
+            
             <input style="float: right;" type="button" onclick = "location='reservacion.php'" value = "Agregar Reservacion" class = "btn btn_general rounded" ></input>
-            <button class="btn btn_general rounded" onclick = "location='excel.php'"><i class="bi bi-file-earmark-excel"></i></button>
+            <button class="btn btn-success float-right" onclick = "location='excel.php'"><i class="bi bi-file-earmark-excel"></i></button>
             <br><br>
             <div class="mt-2">
                 <div class="table_title rounded p-2">LISTA DE RESERVACIONES</div>
                 <div class="mx-auto">
                     <!-- <table class="table align-middle table-responsive-xl"> -->
-                    <table class="table table-striped table-hover table-borderless">
+                    <div class="table-responsive">
+                    <table class="table table-striped  table-hover table-borderless">
                         <thead class="table_theme">
+                            
                             <tr>
                                 <th scope="col">Folio</th>
                                 <th scope="col">Nombre</th>
@@ -95,9 +138,9 @@
                                 <!--<th scope="col">Deposito</th>-->
                                 <th scope="col">Fecha Reservacion</th>
                                 <th scope="col">Tipo Pago</th>
-                                <th scope="col">Numero de Noches</th>
+                                <th scope="col">Num Noches</th>
                                 <th scope="col">Total</th>
-                                <th scope="col" colspan="2">Opciones</th>
+                                <th scope="col" colspan="3">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,12 +158,13 @@
                                 <td><?php echo $dato->fecha_llegada; ?></td>
                                 <td><?php echo $dato->fecha_salida; ?></td>
                                 <td><?php echo $dato->nom_habitacion; ?></td>
-                                <td><?php echo $dato->no_personas; ?></td>
+                                <td style = "text-align: center;" ><?php echo $dato->no_personas; ?></td>
                                 <!--<td><//?php echo $dato->deposito; ?></td>-->
                                 <td><?php echo $dato->fecha_reservacion; ?></td>
                                 <td><?php echo $dato->tipo_pago; ?></td>
-                                <td><?php echo $dato->no_noches; ?></td>
+                                <td style = "text-align: center;" ><?php echo $dato->no_noches; ?></td>
                                 <td><?php echo $dato->total; ?></td>
+                                <td><a class="text-success" href="pagos.php?codigo=<?php echo $dato->idReservaciones; ?>&numhab=<?php echo $dato->habitacion_id; ?>"><i class="bi bi-currency-dollar"></i></a></td>
                                 <td><a class="text-success" href="editar.php?codigo=<?php echo $dato->idReservaciones; ?>&numhab=<?php echo $dato->habitacion_id; ?>"><i class="bi bi-pencil-square"></i></a></td>
                                 <td><a onclick="return confirm('Estas seguro de eliminar?');" class="text-danger" href="eliminar.php?codigo=<?php echo $dato->idReservaciones; ?>&habitacion=<?php echo $dato->habitacion_id; ?>"><i class="bi bi-trash"></i></a></td>
                                <!-- <td><a class="text-success" href="vista.php?codigo=<?//php echo $dato->no_folio; ?>"><i class="bi bi-eye-fill"></i></a></td>-->
@@ -133,7 +177,7 @@
 
                         </tbody>
                     </table>
-                    
+                    </div>
                 </div>
             </div>
         </div>
