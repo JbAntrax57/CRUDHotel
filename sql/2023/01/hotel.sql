@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-02-2023 a las 04:39:48
+-- Tiempo de generación: 03-05-2023 a las 05:07:13
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `hotel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gasto`
+--
+
+CREATE TABLE `gasto` (
+  `id` int(6) NOT NULL,
+  `concepto` varchar(70) NOT NULL,
+  `importe` int(7) NOT NULL,
+  `fecha_gasto` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `gasto`
+--
+
+INSERT INTO `gasto` (`id`, `concepto`, `importe`, `fecha_gasto`) VALUES
+(1, 'hola', 100, '2023-04-29');
 
 -- --------------------------------------------------------
 
@@ -97,8 +117,28 @@ CREATE TABLE `pagos` (
   `id` int(6) NOT NULL,
   `reservacion_id` int(10) NOT NULL,
   `monto` float NOT NULL,
-  `fecha_registro` date NOT NULL
+  `fecha_registro` date NOT NULL,
+  `folio_c` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pagos`
+--
+
+INSERT INTO `pagos` (`id`, `reservacion_id`, `monto`, `fecha_registro`, `folio_c`) VALUES
+(1, 69, 100, '2023-04-23', 0),
+(2, 69, 100, '2023-04-23', 0),
+(3, 68, -100, '2023-04-23', 0),
+(4, 68, 500, '2023-04-23', 0),
+(5, 69, 100, '2023-04-26', 0),
+(6, 69, 50, '2023-04-26', 0),
+(7, 64, 1000, '2023-04-26', 0),
+(8, 63, 900, '2023-04-26', 0),
+(9, 62, 900, '2023-04-26', 0),
+(10, 59, 801, '2023-04-26', 0),
+(11, 59, 799, '2023-04-26', 0),
+(12, 69, 250, '2023-04-26', 0),
+(13, 52, 350, '2023-04-26', 0);
 
 -- --------------------------------------------------------
 
@@ -176,18 +216,39 @@ CREATE TABLE `reservaciones` (
   `fecha_reservacion` date NOT NULL,
   `tipo_pago` text NOT NULL,
   `no_folio` int(6) NOT NULL,
-  `no_noches` int(2) NOT NULL
+  `no_noches` int(2) NOT NULL,
+  `total` float NOT NULL,
+  `temporada` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `reservaciones`
 --
 
-INSERT INTO `reservaciones` (`idReservaciones`, `nombre`, `fecha_deps`, `num_telefono`, `email`, `lugar_residencia`, `fecha_llegada`, `fecha_salida`, `habitacion_id`, `no_personas`, `deposito`, `fecha_reservacion`, `tipo_pago`, `no_folio`, `no_noches`) VALUES
-(17, 'rodomis', '2023-01-16', 111111111, 'admin@hotmail.com', ' barra', '2023-01-16', '2023-01-17', 1, 2, 100, '2023-01-25', 'Efectivo', 1, 15),
-(21, 'rudolf wolf wolf', '2023-01-18', 2147483647, 'rudolfg@hotmail.com', 'la huertona', '2023-01-19', '2023-01-21', 1, 2, 500, '2023-01-18', 'Credito', 3, 0),
-(25, 'rudolf ', '2023-01-26', 2147483647, 'eduardo@wasp.mx', 'la huertona', '2023-01-26', '2023-01-25', 1, 3, 100, '2023-01-25', 'Efectivo', 5, 0),
-(30, 'rudolf wolf wolf', '2023-02-18', 2147483647, 'eduardo@wasp.mx', 'la huertona', '2023-02-25', '2023-02-28', 1, 2, 450, '2023-02-18', 'Credito', 6, 3);
+INSERT INTO `reservaciones` (`idReservaciones`, `nombre`, `fecha_deps`, `num_telefono`, `email`, `lugar_residencia`, `fecha_llegada`, `fecha_salida`, `habitacion_id`, `no_personas`, `deposito`, `fecha_reservacion`, `tipo_pago`, `no_folio`, `no_noches`, `total`, `temporada`) VALUES
+(46, 'finiono', '2023-03-09', 2147483647, 'rudolfg@hotmail.com', 'el centro', '2023-03-09', '2023-03-09', 1, 1, 41, '2023-04-02', 'Efectivo', 10, 1, 600, ''),
+(47, 'rudolf wolf wolf', '2023-03-09', 2147483647, 'rudolfg@hotmail.com', 'La concha', '2023-03-09', '2023-03-10', 1, 1, 0, '2023-03-09', 'Tarjeta', 11, 1, 700, ''),
+(48, 'rudolf wolf wolf', '2023-03-08', 2147483647, 'rudolfg@hotmail.com', 'La Capital del mundo ', '2023-03-09', '2023-03-09', 2, 12, 0, '2023-03-09', 'Credito', 12, 1, 700, ''),
+(50, 'rodomis', '2023-03-10', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-03-09', '2023-03-11', 4, 1, 0, '2023-03-09', 'Credito', 14, 2, 1400, ''),
+(51, 'lalomis', '2023-03-09', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-03-09', '2023-03-10', 5, -52, 0, '2023-03-09', 'Tarjeta', 15, 1, 600, ''),
+(52, 'rudolf wolf wolf', '2023-03-15', 2147483647, 'rudolfg@hotmail.com', 'Jaluco ', '2023-03-15', '2023-03-16', 6, 1, 0, '2023-03-15', 'Transferencia', 16, 1, 700, ''),
+(53, 'rudolf wolf wolf', '2023-03-27', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-03-27', '2023-03-28', 7, 1, 0, '2023-03-27', 'Credito', 17, 1, 700, ''),
+(54, 'Omar Perez', '2023-03-29', 2147483647, 'rudolfg@hotmail.com', 'el centro', '2023-03-28', '2023-03-31', 9, 4, 0, '2023-03-27', 'Cortesia', 18, 3, 1950, ''),
+(55, 'Omar Perez', '2023-03-29', 2147483647, 'eduardo@wasp.mx', 'Jaluco ', '2023-03-29', '2023-03-30', 10, 3, 0, '2023-03-27', 'Credito', 19, 1, 650, ''),
+(56, 'laloquera', '2023-03-29', 2147483647, 'eduardo@wasp.mx', 'La concha', '2023-03-29', '2023-03-30', 11, 1, 0, '2023-03-27', 'Cortesia', 20, 1, 800, ''),
+(57, 'lalomis', '2023-03-29', 2147483647, 'rudolfg@hotmail.com', 'el centro', '2023-03-29', '2023-03-30', 12, 1, 0, '2023-03-27', 'Tarjeta', 21, 1, 800, ''),
+(58, 'lalomis', '2023-03-29', 2147483647, 'rudolfg@hotmail.com', 'el centro', '2023-03-29', '2023-03-30', 12, 1, 0, '2023-03-27', 'Tarjeta', 21, 1, 800, ''),
+(59, 'rudolf wolf wolf', '2023-03-30', 2147483647, 'rudolfg@hotmail.com', 'el centro', '2023-03-29', '2023-03-31', 13, 1, 0, '2023-03-27', 'Cortesia', 22, 2, 1600, ''),
+(60, 'rudolf wolf wolf', '2023-03-29', 2147483647, 'rudolfg@hotmail.com', 'el centro', '2023-03-29', '2023-03-31', 14, 1, 0, '2023-03-27', 'Cortesia', 23, 2, 1200, ''),
+(61, 'Omar Perez', '2023-04-03', 2147483647, 'rudolfg@hotmail.com', 'La Capital del mundo ', '2023-04-03', '2023-04-04', 15, 1, 0, '2023-04-01', 'Tarjeta', 24, 1, 600, ''),
+(62, 'rudolf wolf wolf', '2023-04-03', 2147483647, 'rudolfg@hotmail.com', 'La concha', '2023-04-03', '2023-04-05', 16, 1, 0, '2023-04-01', 'Credito', 25, 2, 1800, ''),
+(63, 'elbolifolfo', '2023-04-01', 2147483647, 'rudolfg@hotmail.com', 'La Capital del mundo ', '2023-04-01', '2023-04-02', 17, 1, 0, '2023-04-01', 'Tarjeta', 26, 1, 900, ''),
+(64, 'la vara cuetera', '2023-04-02', 2147483647, 'rudolfg@hotmail.com', 'el centro en frente del alondra', '2023-04-02', '2023-04-03', 18, 2, 0, '2023-04-01', 'Transferencia', 27, 1, 1100, ''),
+(65, 'Omar Perez', '2023-04-01', 2147483647, 'rudolfg@hotmail.com', 'el centro', '2023-04-01', '2023-04-02', 1, 1, 0, '2023-04-01', 'Cortesia', 28, 1, 700, ''),
+(66, 'rodomis', '2023-04-02', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-04-02', '2023-04-03', 1, 1, 12, '2023-04-02', 'Tarjeta', 29, 1, 700, 'baja'),
+(67, 'Omar', '2023-04-20', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-04-20', '2023-04-21', 1, 1, 0, '2023-04-19', 'Transferencia', 30, 1, 700, 'alta'),
+(68, 'rudolf wolf wolf', '2023-04-22', 2147483647, 'rudolfg@hotmail.com', 'La concha', '2023-04-22', '2023-04-23', 3, 4, 0, '2023-04-19', 'Credito', 31, 1, 700, 'alta'),
+(69, 'Omar', '2023-04-23', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-04-22', '2023-04-23', 1, 1, 0, '2023-04-22', 'Transferencia', 32, 1, 600, 'baja');
 
 -- --------------------------------------------------------
 
@@ -234,13 +295,19 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido_pat`, `apellido_mat`, `telefono`, `email`, `direccion`, `turno`, `password`, `rol`) VALUES
-(4, 'teddy', 'morales', 'Jaramillo', '3154215897', 'rudolfg@hotmail.com', 'la huertona', 'nocturno', '1234', 'usuario'),
-(8, 'laloquera', 'perez', 'morales', '3151001212', 'rudolfg@hotmail.com', 'la huertona', 'vespertino', '1234', 'administrador'),
-(9, 'rodomis', 'morales', 'dias', '3151135700', 'eduardo@wasp.mx', 'la huertona', 'matutino', '4567', 'usuario');
+(4, 'carlos', 'rodriguez', 'ramos', '3154215897', 'rudolfg@hotmail.com', 'la huertona', 'vespertino', '1234', 'usuario'),
+(8, 'Eddy', 'ambrosio', 'antrax', '3151001212', 'rudolfg@hotmail.com', 'la huertona', 'vespertino', '1234', 'usuario'),
+(10, 'JoseLuis', 'Gonzalez', 'Ortiz', '3151135700', 'rudolfg@hotmail.com', 'la huertona', 'nocturno', '1234', 'administrador');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `gasto`
+--
+ALTER TABLE `gasto`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `gastos`
@@ -311,6 +378,12 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `gasto`
+--
+ALTER TABLE `gasto`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `gastos`
 --
 ALTER TABLE `gastos`
@@ -332,7 +405,7 @@ ALTER TABLE `ingresos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `preciohabitacion`
@@ -350,7 +423,7 @@ ALTER TABLE `recepcion`
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `idReservaciones` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idReservaciones` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT de la tabla `tipohabitaciones`
@@ -362,7 +435,7 @@ ALTER TABLE `tipohabitaciones`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idUsuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
