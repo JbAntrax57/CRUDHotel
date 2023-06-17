@@ -19,7 +19,7 @@ include 'template/header.php';
             <?php 
                 }
             ?>
-            <div class="row mt-4">
-        <img src="img/login.jpg" class="img-fluid" alt="Responsive image">
-    </div>
+    <div class="container">
+  <img src="img/login.jpg" style="height: 50%;" class="img-fluid">
+</div>
 <?php include 'template/footer.php' ?>

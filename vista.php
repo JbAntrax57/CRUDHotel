@@ -113,6 +113,16 @@
             <?php 
                 }
             ?>
+            <?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'excede'){
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Eliminado!</strong> El pago excede el total.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?> 
             
             <input style="float: right;" type="button" onclick = "location='reservacion.php'" value = "Agregar Reservacion" class = "btn btn_general rounded" ></input>
             <button class="btn btn-success float-right" onclick = "location='excel.php'"><i class="bi bi-file-earmark-excel"></i></button>

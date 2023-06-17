@@ -23,16 +23,19 @@
            exit();
     
           } 
-   }
-   else if ( $saldoR==0 ) {
+   } else if ( $saldoR==0 ) {
     header('Location: vista.php?mensaje=pagado');
            exit();
-   }
-   else if ($monto != $saldoR){
+   } else if ($monto != $saldoR){
      
         header('Location: vista.php?mensaje=errcant');
            exit();
     
+   }
+
+   if($saldoR < $monto){
+    header('Location: vista.php?mensaje=excede');
+    exit();
    }
   
   

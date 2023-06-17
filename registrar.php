@@ -1,4 +1,7 @@
 <?php
+
+include_once 'model/conexion.php';
+
     date_default_timezone_set('America/Mexico_City');
     if(empty($_POST["datoNombre"]) 
     || empty($_POST["datoDEPS"]) || empty($_POST["datoTelefono"]) || empty($_POST["datoEmail"]) || empty($_POST["datoResidencia"])
@@ -8,7 +11,22 @@
         exit();
     }
 
-    include_once 'model/conexion.php';
+    $sql = $bd->query("select * from reservaciones order by idReservaciones desc");
+    $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
+    
+    foreach ($reservacion as $r) {
+        if (($r->fecha_llegada <= date("Y-m-d", strtotime($_POST["datoFechaLlegada"])) && $r->fecha_salida >= date("Y-m-d", strtotime($_POST["datoFechaSalida"]))) && $r->habitacion_id == $_POST["datoHabitacion"]){
+            $disponible = 0;
+            header('Location: reservacion.php?mensaje=fechaigual');
+        exit();
+        }else{
+            $disponible = 1;
+            //var_dump($r->habitacion_id. ' '. $disponible);   
+        }
+    
+    }
+
+    
     $deps = date("Y-m-d", strtotime($_POST["datoDEPS"]));
 
     $fecha_llegada = date("Y-m-d", strtotime($_POST["datoFechaLlegada"]));

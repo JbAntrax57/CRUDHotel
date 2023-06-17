@@ -103,7 +103,7 @@
               <li><a class="dropdown-item" href="gastosCaja.php"><i class="bi bi-cash-coin"></i>&nbsp;&nbsp;&nbsp;Pagos Caja</a></li>
            
             </ul>
-          </li> 
+          </li>  
 <?php
 if($_SESSION['rol']!='usuario'){
 ?>

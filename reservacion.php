@@ -23,7 +23,7 @@
 
     }
 
-    $sentencia = $bd -> query("select * from habitaciones where disponible = 1");
+    $sentencia = $bd -> query("select * from habitaciones");
     $habitaciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
     //print_r($persona);
 ?>
@@ -78,7 +78,16 @@
             <?php 
                 }
             ?> 
-
+  <?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'fechaigual'){
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> Estas fechas ya no estan disponibles!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?> 
 
 <?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'eliminado'){
