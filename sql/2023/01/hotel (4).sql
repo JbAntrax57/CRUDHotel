@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2023 a las 05:07:13
+-- Tiempo de generación: 21-09-2023 a las 07:30:04
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -24,6 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cortecaja`
+--
+
+CREATE TABLE `cortecaja` (
+  `id` int(7) NOT NULL,
+  `folio` int(6) NOT NULL,
+  `total_caja` int(10) NOT NULL,
+  `gasto_total` int(10) NOT NULL,
+  `saldo_restante` int(10) NOT NULL,
+  `saldo_contado` int(10) NOT NULL,
+  `nombre_empleado` varchar(45) NOT NULL,
+  `id_gasto` int(10) DEFAULT NULL,
+  `fecha_corte` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cortecaja`
+--
+
+INSERT INTO `cortecaja` (`id`, `folio`, `total_caja`, `gasto_total`, `saldo_restante`, `saldo_contado`, `nombre_empleado`, `id_gasto`, `fecha_corte`) VALUES
+(4, 0, 1400, 2700, -1300, 1500, '', NULL, '2023-06-17'),
+(5, 1, 1400, 2700, -1300, 1200, '', NULL, '2023-06-17'),
+(6, 1, 1400, 2700, -1300, 1200, '', NULL, '2023-06-17'),
+(7, 1, 1400, 2700, -1300, 1200, '', NULL, '2023-06-17'),
+(8, 2, 1400, 2700, -1300, 1200, '', NULL, '2023-06-17'),
+(9, 2, 1400, 2700, -1300, 1200, '', NULL, '2023-06-17'),
+(10, 3, 1400, 2700, -1300, 1200, '', NULL, '2023-06-17'),
+(11, 4, 1400, 2700, -1300, 1200, '', NULL, '2023-06-17'),
+(12, 5, 1400, 0, 1400, 4500, '', NULL, '2023-06-17'),
+(13, 6, 0, 0, 0, 450, '', NULL, '2023-06-17'),
+(14, 7, 800, 12000, -11200, 100, '', NULL, '2023-06-17'),
+(15, 8, 700, 100, 600, 600, '', NULL, '2023-06-29'),
+(16, 9, 0, 0, 0, 0, '', NULL, '2023-09-21');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `gasto`
 --
 
@@ -31,15 +68,22 @@ CREATE TABLE `gasto` (
   `id` int(6) NOT NULL,
   `concepto` varchar(70) NOT NULL,
   `importe` int(7) NOT NULL,
-  `fecha_gasto` date NOT NULL
+  `fecha_gasto` date NOT NULL,
+  `gasto_aplicado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `gasto`
 --
 
-INSERT INTO `gasto` (`id`, `concepto`, `importe`, `fecha_gasto`) VALUES
-(1, 'hola', 100, '2023-04-29');
+INSERT INTO `gasto` (`id`, `concepto`, `importe`, `fecha_gasto`, `gasto_aplicado`) VALUES
+(1, 'hola', 100, '2023-04-29', 1),
+(2, 'productos de limpieza  4546542123___ qaew', 1500, '2023-06-01', 1),
+(3, 'reparacion aire AC', 500, '2023-06-15', 1),
+(4, 'piro vampiro', 500, '2023-06-17', 1),
+(5, 'lubriguapos', 100, '2023-06-17', 1),
+(6, 'tenis lacoste', 12000, '2023-06-17', 1),
+(7, 'lavanderia', 100, '2023-06-29', 1);
 
 -- --------------------------------------------------------
 
@@ -118,27 +162,40 @@ CREATE TABLE `pagos` (
   `reservacion_id` int(10) NOT NULL,
   `monto` float NOT NULL,
   `fecha_registro` date NOT NULL,
-  `folio_c` int(6) NOT NULL
+  `folio_c` int(6) NOT NULL,
+  `pago_aplicado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `pagos`
 --
 
-INSERT INTO `pagos` (`id`, `reservacion_id`, `monto`, `fecha_registro`, `folio_c`) VALUES
-(1, 69, 100, '2023-04-23', 0),
-(2, 69, 100, '2023-04-23', 0),
-(3, 68, -100, '2023-04-23', 0),
-(4, 68, 500, '2023-04-23', 0),
-(5, 69, 100, '2023-04-26', 0),
-(6, 69, 50, '2023-04-26', 0),
-(7, 64, 1000, '2023-04-26', 0),
-(8, 63, 900, '2023-04-26', 0),
-(9, 62, 900, '2023-04-26', 0),
-(10, 59, 801, '2023-04-26', 0),
-(11, 59, 799, '2023-04-26', 0),
-(12, 69, 250, '2023-04-26', 0),
-(13, 52, 350, '2023-04-26', 0);
+INSERT INTO `pagos` (`id`, `reservacion_id`, `monto`, `fecha_registro`, `folio_c`, `pago_aplicado`) VALUES
+(1, 69, 100, '2023-04-23', 0, 1),
+(2, 69, 100, '2023-04-23', 0, 1),
+(3, 68, -100, '2023-04-23', 0, 1),
+(4, 68, 500, '2023-04-23', 0, 1),
+(5, 69, 100, '2023-04-26', 0, 1),
+(6, 69, 50, '2023-04-26', 0, 1),
+(7, 64, 1000, '2023-04-26', 0, 1),
+(8, 63, 900, '2023-04-26', 0, 1),
+(9, 62, 900, '2023-04-26', 0, 1),
+(10, 59, 801, '2023-04-26', 0, 1),
+(11, 59, 799, '2023-04-26', 0, 1),
+(12, 69, 250, '2023-04-26', 0, 1),
+(13, 52, 350, '2023-04-26', 0, 1),
+(14, 50, 8222, '2023-05-03', 0, 1),
+(15, 47, 800, '2023-05-03', 0, 1),
+(16, 70, 800, '2023-05-03', 0, 1),
+(17, 71, 700, '2023-05-03', 0, 1),
+(18, 67, 701, '2023-05-03', 0, 1),
+(19, 48, 500, '2023-05-03', 0, 1),
+(20, 51, 599, '2023-05-03', 0, 1),
+(21, 51, 1, '2023-05-03', 0, 1),
+(22, 56, 400, '2023-05-31', 0, 1),
+(23, 78, 700, '2023-05-31', 0, 1),
+(24, 79, 800, '2023-06-16', 0, 1),
+(25, 80, 700, '2023-06-28', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -248,7 +305,25 @@ INSERT INTO `reservaciones` (`idReservaciones`, `nombre`, `fecha_deps`, `num_tel
 (66, 'rodomis', '2023-04-02', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-04-02', '2023-04-03', 1, 1, 12, '2023-04-02', 'Tarjeta', 29, 1, 700, 'baja'),
 (67, 'Omar', '2023-04-20', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-04-20', '2023-04-21', 1, 1, 0, '2023-04-19', 'Transferencia', 30, 1, 700, 'alta'),
 (68, 'rudolf wolf wolf', '2023-04-22', 2147483647, 'rudolfg@hotmail.com', 'La concha', '2023-04-22', '2023-04-23', 3, 4, 0, '2023-04-19', 'Credito', 31, 1, 700, 'alta'),
-(69, 'Omar', '2023-04-23', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-04-22', '2023-04-23', 1, 1, 0, '2023-04-22', 'Transferencia', 32, 1, 600, 'baja');
+(69, 'Omar', '2023-04-23', 2147483647, 'rudolfg@hotmail.com', 'la huerta', '2023-04-22', '2023-04-23', 1, 1, 0, '2023-04-22', 'Transferencia', 32, 1, 600, 'baja'),
+(70, 'Agustin', '2023-05-04', 2147483647, 'profe@hotmail.com', 'La Huerta', '2023-05-04', '2023-05-05', 1, 2, 0, '2023-05-03', 'Credito', 33, 1, 700, 'alta'),
+(71, 'Agustin', '2023-05-04', 2313255, 'asdfasdf@hola.com', 'La Huerta', '2023-05-04', '2023-05-05', 1, 1, 0, '2023-05-03', 'Efectivo', 34, 1, 600, 'baja'),
+(72, 'pedro', '2023-05-04', 301225221, 'asdfasdf@hola.com', 'La Huerta', '2023-05-04', '2023-05-06', 1, 1, 0, '2023-05-03', 'Tarjeta', 35, 2, 1400, 'alta'),
+(73, 'lalo', '2023-05-06', 2153455, 'asdfasdf@hola.com', 'LC', '2023-05-06', '2023-05-08', 1, 1, 0, '2023-05-03', 'Cortesia', 36, 2, 1200, 'baja'),
+(74, 'lalo', '2023-05-06', 12545566, 'asdfasdf@hola.com', 'LC', '2023-05-06', '2023-05-08', 1, 1, 0, '2023-05-03', 'Cortesia', 37, 2, 1200, 'baja'),
+(75, 'haola', '2023-05-06', 42252524, 'asdfasdf@hola.com', 'asba', '2023-05-06', '2023-05-08', 2, 2, 0, '2023-05-03', 'Transferencia', 38, 2, 1400, 'alta'),
+(76, 'lao', '2023-05-03', 545185, 'asdfasdf@hola.com', 'LC', '2023-05-03', '2023-05-04', 9, 1, 0, '2023-05-03', 'Credito', 39, 1, 650, 'alta'),
+(77, 'teddy', '2023-05-04', 545145, 'asdfasdf@hola.com', 'La Huerta', '2023-05-03', '2023-05-04', 3, 1, 0, '2023-05-03', 'Credito', 40, 1, 700, 'alta'),
+(78, 'elcochino', '2023-05-31', 301225221, 'asdfasdf@hola.com', 'los barras', '2023-05-31', '2023-06-01', 1, 2, 0, '2023-05-31', 'Efectivo', 41, 1, 700, 'alta'),
+(79, 'wolf', '2023-06-17', 2313255, 'asdfasdf@hola.com', 'barra', '2023-06-17', '2023-06-18', 11, 2, 0, '2023-06-16', 'Efectivo', 42, 1, 800, 'alta'),
+(80, 'lalo', '2023-06-28', 23121288, 'asdfasdf@hola.com', 'LC', '2023-06-28', '2023-06-29', 1, 2, 0, '2023-06-29', 'Efectivo', 43, 1, 700, 'alta'),
+(81, 'folfo', '2023-06-28', 2147483647, 'wolwolf@hot.com', 'los barras', '2023-06-28', '2023-06-29', 1, 2, 0, '2023-06-29', 'Cortesia', 44, 1, 700, 'alta'),
+(82, 'akakd', '2023-07-01', 12545566, 'asdfasdf@hola.com', 'asba', '2023-07-01', '2023-07-04', 1, 6, 0, '2023-06-28', 'Credito', 45, 3, 2300, 'alta'),
+(83, 'akakd', '2023-07-04', 12545566, 'asdfasdf@hola.com', 'asba', '2023-07-04', '2023-07-05', 1, 6, 0, '2023-06-29', 'Credito', 46, 1, 900, 'alta'),
+(84, 'akakd', '2023-06-29', 12545566, 'asdfasdf@hola.com', 'asba', '2023-06-29', '2023-07-04', 1, 6, 0, '2023-06-29', 'Transferencia', 47, 5, 3700, 'alta'),
+(85, 'akakd', '2023-06-29', 12545566, 'asdfasdf@hola.com', 'asba', '2023-06-29', '2023-07-02', 2, 6, 0, '2023-06-29', 'Credito', 48, 3, 2100, 'alta'),
+(86, 'wolfino', '2023-08-10', 12545566, 'asdfasdf@hola.com', 'jalucon', '2023-08-09', '2023-08-10', 1, 6, 0, '2023-08-10', 'Efectivo', 49, 1, 900, 'alta'),
+(87, 'rudolf', '2023-08-11', 12545566, 'asdfasdf@hola.com', 'los jalucos', '2023-08-11', '2023-08-13', 1, 5, 0, '2023-08-10', 'Efectivo', 50, 2, 1400, 'alta');
 
 -- --------------------------------------------------------
 
@@ -296,12 +371,18 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido_pat`, `apellido_mat`, `telefono`, `email`, `direccion`, `turno`, `password`, `rol`) VALUES
 (4, 'carlos', 'rodriguez', 'ramos', '3154215897', 'rudolfg@hotmail.com', 'la huertona', 'vespertino', '1234', 'usuario'),
-(8, 'Eddy', 'ambrosio', 'antrax', '3151001212', 'rudolfg@hotmail.com', 'la huertona', 'vespertino', '1234', 'usuario'),
 (10, 'JoseLuis', 'Gonzalez', 'Ortiz', '3151135700', 'rudolfg@hotmail.com', 'la huertona', 'nocturno', '1234', 'administrador');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `cortecaja`
+--
+ALTER TABLE `cortecaja`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_gasto` (`id_gasto`);
 
 --
 -- Indices de la tabla `gasto`
@@ -378,10 +459,16 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `cortecaja`
+--
+ALTER TABLE `cortecaja`
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT de la tabla `gasto`
 --
 ALTER TABLE `gasto`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `gastos`
@@ -405,7 +492,7 @@ ALTER TABLE `ingresos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `preciohabitacion`
@@ -423,7 +510,7 @@ ALTER TABLE `recepcion`
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `idReservaciones` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `idReservaciones` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de la tabla `tipohabitaciones`
@@ -440,6 +527,12 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cortecaja`
+--
+ALTER TABLE `cortecaja`
+  ADD CONSTRAINT `cortecaja_ibfk_1` FOREIGN KEY (`id_gasto`) REFERENCES `gastos` (`id`);
 
 --
 -- Filtros para la tabla `gastos`
