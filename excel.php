@@ -1,6 +1,7 @@
 <?php
 include_once "model/conexion.php";
-$sentencia = $bd -> query("select * from reservaciones");
+$sentencia = $bd -> query("select * ,
+case when tipo_pago = 'Cortesia' then 0 else total end as total_m from reservaciones ");
 $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ); 
 header("Pragma: public");
 header("Expires: 0");
@@ -50,7 +51,7 @@ header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
                                 <td><?php echo $dato->fecha_reservacion; ?></td>
                                 <td><?php echo $dato->tipo_pago; ?></td>
                                 <td><?php echo $dato->no_noches; ?></td>
-                                <td><?php echo $dato->total; ?></td>
+                                <td><?php echo $dato->total_m; ?></td>
                             </tr>
 
                             <?php 

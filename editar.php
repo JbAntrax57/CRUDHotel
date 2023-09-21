@@ -33,6 +33,7 @@
     //$rows = $sentencia->fetchAll();
     //|var_dump("primo". $rows);
 ?>
+<br>
 <div class="table_title rounded p-2">Editar datos</div>
 <div class="card shadow_general">
 <div class="container mt-2">
@@ -86,7 +87,10 @@
                             <?php 
                                 foreach ($habitaciones as $habitacion) {
                             ?> 
-                                <option value="<?php echo $habitacion->id; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
+                                <option value="<?php echo $habitacion->id; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['numhab']) && $_GET['numhab'] == $habitacion->id) ? "selected" : "" ?>><?php  echo ($habitacion->tipo_id === 1) ? ($habitacion->nom_habitacion . ' mp#6') :
+             (($habitacion->tipo_id === 2) ? ($habitacion->nom_habitacion . ' mp#7') :
+             (($habitacion->tipo_id === 3) ? ($habitacion->nom_habitacion . ' mp#4') :
+                                              ($habitacion->nom_habitacion . ' mp#8'))); ?></option>
                             <?php 
                                 }
                             ?> 
@@ -99,11 +103,24 @@
                     </div>
                     </div>
                     <div class="col-sm-12 input-group mt-3 d-flex justify-content-between">
-                    <div class="col-sm-3">
-                        <label class="form-label">Deposito: </label>
+
+                    <div class="col-sm-3 mb-3">
+                            <label for="form-label">Temporada: </label>
+                            <select id="inputState" class="form-control" name="datoTemporada"
+                            value="<?php echo $reservacion->temporada; ?>">
+                                <option disabled="true">Seleccionar...</option>
+                               
+                                <option value ="alta"<?php echo isset($reservacion->temporada) && $reservacion->temporada == "alta" ? "selected" : ''?>>Alta</option>
+                                <option value ="baja"<?php echo isset($reservacion->temporada) && $reservacion->temporada == "baja" ? "selected" : ''?>>Baja</option>
+                            
+                            </select>
+                        </div>
+
+                    <!-- <div class="col-sm-3">
+                         <label class="form-label">Deposito: </label>
                         <input type="number" class="form-control" name="datoDeposito" autofocus required
-                        value="<?php echo $reservacion->deposito; ?>">
-                    </div>
+                        value="<?php //echo $reservacion->deposito; ?>">
+                    </div> -->
                     <div class="col-sm-3">
                         <label class="form-label">Folio: </label>
                         <input type="number" class="form-control" name="datoFolio" autofocus required
@@ -125,18 +142,7 @@
                     </div>
                     </div>
                     <div class="col-sm-12 input-group d-flex justify-content-between">
-                        <div class="col-sm-3 mb-3">
-                            <label for="form-label">Temporada: </label>
-                            <select id="inputState" class="form-control" name="datoTemporada"
-                            value="<?php echo $reservacion->temporada; ?>">
-                                <option disabled="true">Seleccionar...</option>
-                                <option value = "alta">Alta</option>
-                                <option value = "baja">Baja</option>
-                                <option value ="alta"<?php echo isset($reservacion->temporada) && $reservacion->temporada == "alta" ? "selected" : ''?>>Alta</option>
-                                <option value ="baja"<?php echo isset($reservacion->temporada) && $reservacion->temporada == "baja" ? "selected" : ''?>>Baja</option>
-                            
-                            </select>
-                        </div>
+                        
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="idReservaciones" value="<?php echo $reservacion->idReservaciones; ?>">

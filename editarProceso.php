@@ -1,11 +1,13 @@
 <?php
-    
+  
     if(empty($_POST["datoNombre"]) 
     || empty($_POST["datoDEPS"]) || empty($_POST["datoTelefono"]) || empty($_POST["datoEmail"]) || empty($_POST["datoResidencia"])
     || empty($_POST["datoFechaLlegada"])|| empty($_POST["datoFechaSalida"])|| empty($_POST["datoHabitacion"])|| empty($_POST["datoNoPersonas"])
-    || empty($_POST["datoDeposito"])|| empty($_POST["datoFolio"]) || empty($_POST["datoTipoPago"])){
+    || empty($_POST["datoFolio"]) || empty($_POST["datoTipoPago"])){
+      
         header('Location: index.php?mensaje=warning');
         exit();
+        
     }
 
     include_once 'model/conexion.php';
@@ -35,19 +37,34 @@
     $no_folio = $_POST["datoFolio"];
     $tipo_pago = $_POST["datoTipoPago"];
     $idReservaciones = $_POST["idReservaciones"];
-
+    
+    $rom = getRoom($habitacion, $bd);
+    $personas = maxper($rom[0]);
+    $extra=0;
+    $total = 0;
+    if ($personas + 2 < $_POST["datoNoPersonas"]){
+        header('Location: reservacion.php?mensaje=maxtp');
+        exit();
+    }else if ($personas + 2 == $_POST["datoNoPersonas"]){
+        $extra = 200;
+    }else if ($personas + 1 == $_POST["datoNoPersonas"]){
+        $extra = 100;
+    }
     $sql = $bd -> query("select * from preciohabitacion where habitacion_id = $habitacion");
     $price = $sql->fetchAll(PDO::FETCH_OBJ);
 
+    $datotemporada = $_POST['datoTemporada'];
+
+    
     if($_POST['datoTemporada'] === 'alta') {
-        $total = $price[0]->tem_alta * $no_noches;
+        $total = ($extra * $no_noches) + $price[0]->tem_alta * $no_noches;
     } else {
-        $total = $price[0]->tem_baja * $no_noches;
+        $total = ($extra * $no_noches) + $price[0]->tem_baja * $no_noches;
     }
 
-    $sentencia = $bd->prepare("UPDATE reservaciones SET nombre = ?, fecha_deps = ?, num_telefono = ?, email = ?, lugar_residencia = ?, fecha_llegada = ?, fecha_salida = ?, habitacion_id = ?, no_personas = ?, deposito = ?, fecha_reservacion = ?, tipo_pago = ?, no_folio = ?, no_noches = ?, total = ? where idReservaciones = ?;");
+    $sentencia = $bd->prepare("UPDATE reservaciones SET nombre = ?, fecha_deps = ?, num_telefono = ?, email = ?, lugar_residencia = ?, fecha_llegada = ?, fecha_salida = ?, habitacion_id = ?, no_personas = ?, deposito = ?, fecha_reservacion = ?, tipo_pago = ?, no_folio = ?, no_noches = ?, total = ?, temporada = ? where idReservaciones = ?;");
      $resultado = $sentencia->execute([$nombre,$deps,$telefono,$correo,$residencia,$fecha_llegada
-    ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches),floatval($total),$idReservaciones]);
+    ,$fecha_salida,$habitacion,$no_personas,$deposito,$fecha_reservacion,$tipo_pago,$no_folio,intval($no_noches),floatval($total),$datotemporada,$idReservaciones]);
 
    
 

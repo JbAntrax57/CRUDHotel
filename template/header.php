@@ -4,22 +4,7 @@
   if (!isset($_SESSION['rol'])) {
     header('Location: login.php');
   }
-//   require 'model/conexion.php';
 
-//   $conexion =mysqli_connect("localhost","root","","hotel");
-// //   $conexion =mysqli_connect("localhost","id17673459_root","POPOlolo22POPOlolo22@","id17673459_didisee");
-//   if (isset($_SESSION['user_id'])) {
-//     $records = $conn->prepare('SELECT idUsuario, nombre, password FROM usuario WHERE idUsuario = :id');
-//     $records->bindParam(':id', $_SESSION['user_id']);
-//     $records->execute();
-//     $results = $records->fetch(PDO::FETCH_ASSOC);
-// echo $results;
-//     $user = null;
-
-//     if (count($results) > 0) {
-//       $user = $results;
-//     }
-//   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,22 +57,17 @@
             </ul>
           </li>
 
-         <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-file-earmark-spreadsheet"></i>&nbsp;&nbsp;&nbsp;Reportes
-            </a>
-            <ul class="dropdown-menu menu-bg-light">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i>&nbsp;&nbsp;&nbsp;Estatus de Reporte</a></li>
-            </ul>
-          </li>
--->
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-door-open"></i>&nbsp;&nbsp;&nbsp;Habitaciones
             </a>
             <ul class="dropdown-menu menu-bg-light">
               <li><a class="dropdown-item" href="habitaciones.php"><i class="bi bi-door-closed"></i>&nbsp;&nbsp;&nbsp;Estado Habitaciones</a></li>
+             <li><a class="dropdown-item" href="cambioprecio.php"><i class="bi bi-currency-dollar"></i>&nbsp;&nbsp;&nbsp;Precios Habitaciones</a></li>
             </ul>
+            
+             
           </li>
 
 
@@ -99,7 +79,7 @@
             </a>
             <ul class="dropdown-menu menu-bg-light">
               <li><a class="dropdown-item" href="corte_caja.php"><i class="bi bi-vector-pen"></i>&nbsp;&nbsp;&nbsp;Corte de Caja</a></li>
-              <li><a class="dropdown-item" href="caja.php"><i class="bi bi-safe"></i>&nbsp;&nbsp;&nbsp;Deposito Caja</a></li>
+              <!--<li><a class="dropdown-item" href="caja.php"><i class="bi bi-safe"></i>&nbsp;&nbsp;&nbsp;Deposito Caja</a></li>-->
               <li><a class="dropdown-item" href="gastosCaja.php"><i class="bi bi-cash-coin"></i>&nbsp;&nbsp;&nbsp;Pagos Caja</a></li>
            
             </ul>
@@ -128,13 +108,10 @@ if($_SESSION['rol']!='usuario'){
           </li>
        
         </ul>
-        <!-- <form class="d-flex mt-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success" type="submit">Search</button>
-        </form> -->
+        
       </div>
     </div>
     <img src="img/logohotel.png" alt="logo" style="height: 5%; width: 5%; margin-right: 3%;">
   </div>
 </nav>
-<!--<div class="clearfix"></div>-->
+

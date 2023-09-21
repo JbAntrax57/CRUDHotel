@@ -20,6 +20,6 @@ include 'template/header.php';
                 }
             ?>
     <div class="container">
-  <img src="img/login.jpg" style="height: 50%;" class="img-fluid">
+  <img src="img/login.jpg" style="height: 50%; width: 100%!important;" class="img-fluid">
 </div>
 <?php include 'template/footer.php' ?>

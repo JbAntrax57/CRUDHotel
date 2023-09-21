@@ -94,6 +94,8 @@
 
             <div class="card shadow_general">
                 <form class="p-4" method="POST" action="registrarcorte.php">
+                <button class="btn btn-success float-right" onclick = "location='excelCaja.php'"><i class="bi bi-file-earmark-excel"></i></button>
+            
             <div class="col-sm-12 input-group">
                 
                         <div class="col-sm-1 float_right "style = "padding-right: 2%;">

@@ -101,6 +101,19 @@
             ?>
 
 <?php 
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'maxtp'){
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Eliminado!</strong> Las personas execen el total.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php 
+                }
+            ?> 
+
+
+
+<?php 
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'fecha'){
             ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -205,7 +218,10 @@
                                 <?php 
                                     foreach ($habitaciones as $habitacion) {
                                 ?> 
-                                    <option value="<?php echo $habitacion->id; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo $habitacion->nom_habitacion; ?></option>
+                                    <option value="<?php echo $habitacion->id; ?>" <?php echo (isset($valorSeleccionado) && $valorSeleccionado == $habitacion->id) || (isset($_GET['codigo']) && $_GET['codigo'] == $habitacion->id) ? "selected" : "" ?>><?php  echo ($habitacion->tipo_id === 1) ? ($habitacion->nom_habitacion . ' mp#6') :
+             (($habitacion->tipo_id === 2) ? ($habitacion->nom_habitacion . ' mp#7') :
+             (($habitacion->tipo_id === 3) ? ($habitacion->nom_habitacion . ' mp#4') :
+                                              ($habitacion->nom_habitacion . ' mp#8'))) ; ?></option>
                                 <?php 
                                     }
                                 ?> 

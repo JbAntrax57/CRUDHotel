@@ -97,18 +97,28 @@ include_once 'model/conexion.php';
     $habitacion = $_POST["datoHabitacion"];
     $rom = getRoom($habitacion, $bd);
     $personas = maxper($rom[0]);
-    
+    $extra=0;
+    $total = 0;
+    if ($personas + 2 < $_POST["datoNoPersonas"]){
+        header('Location: reservacion.php?mensaje=maxtp');
+        exit();
+    }else if ($personas + 2 == $_POST["datoNoPersonas"]){
+        $extra = 200;
+    }else if ($personas + 1 == $_POST["datoNoPersonas"]){
+        $extra = 100;
+    }
+            
     $sql = $bd -> query("select * from preciohabitacion where habitacion_id = $habitacion");
     $price = $sql->fetchAll(PDO::FETCH_OBJ);
 
     if($_POST['datoTemporada'] === 'alta') {
-        $total = $price[0]->tem_alta * $no_noches;
+        $total = ($extra * $no_noches) + $price[0]->tem_alta * $no_noches;
     } else {
-        $total = $price[0]->tem_baja * $no_noches;
+        $total = ($extra * $no_noches) + $price[0]->tem_baja * $no_noches;
     }
 
     $no_personas = $_POST["datoNoPersonas"];
-    if($no_personas>$personas ||$no_personas < 1){
+    if($no_personas < 1){
         header('Location: reservacion.php?mensaje=npersonas');
         exit();
     }
