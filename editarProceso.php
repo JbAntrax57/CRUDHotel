@@ -22,6 +22,8 @@
     $fecha2 = date_create($fecha_salida);
     $diff=date_diff($fecha1,$fecha2);
     $no_noches = $diff->format("%R%a");
+    
+    
 
     if($fecha_llegada === $fecha_salida) {
         $no_noches = 1;
@@ -38,6 +40,27 @@
     $tipo_pago = $_POST["datoTipoPago"];
     $idReservaciones = $_POST["idReservaciones"];
     
+    $sentencia = $bd->prepare("select * from reservaciones where idReservaciones = ?;");
+    $sentencia->execute([$idReservaciones]);
+    $reservacion = $sentencia->fetch(PDO::FETCH_OBJ);
+
+    if(($fecha_llegada!=$reservacion->fecha_llegada||$fecha_salida!=$reservacion->fecha_salida)&&$habitacion==$reservacion->habitacion_id){
+        $sql = $bd->query("SELECT *
+        FROM reservaciones
+        WHERE fecha_salida >= CURDATE() - INTERVAL 30 DAY
+        ORDER BY idReservaciones DESC;");
+        $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        foreach ($reservacion as $r) {
+            if ((($r->fecha_llegada <= date("Y-m-d", strtotime($_POST["datoFechaLlegada"])) && $r->fecha_salida >= date("Y-m-d", strtotime($_POST["datoFechaSalida"]))) && $r->habitacion_id == $_POST["datoHabitacion"])||(($r->fecha_llegada >= date("Y-m-d", strtotime($_POST["datoFechaLlegada"])) && $r->fecha_salida <= date("Y-m-d", strtotime($_POST["datoFechaSalida"]))) && $r->habitacion_id == $_POST["datoHabitacion"])){
+                $disponible = 0;
+                header('Location: vista.php?mensaje=fechaigual');
+            exit();
+        }   
+        
+        }
+    }
+
     $rom = getRoom($habitacion, $bd);
     $personas = maxper($rom[0]);
     $extra=0;

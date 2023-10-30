@@ -15,7 +15,7 @@ include_once 'model/conexion.php';
     $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
     
     foreach ($reservacion as $r) {
-        if (($r->fecha_llegada <= date("Y-m-d", strtotime($_POST["datoFechaLlegada"])) && $r->fecha_salida >= date("Y-m-d", strtotime($_POST["datoFechaSalida"]))) && $r->habitacion_id == $_POST["datoHabitacion"]){
+        if ((($r->fecha_llegada <= date("Y-m-d", strtotime($_POST["datoFechaLlegada"])) && $r->fecha_salida >= date("Y-m-d", strtotime($_POST["datoFechaSalida"]))) && $r->habitacion_id == $_POST["datoHabitacion"])||(($r->fecha_llegada >= date("Y-m-d", strtotime($_POST["datoFechaLlegada"])) && $r->fecha_salida <= date("Y-m-d", strtotime($_POST["datoFechaSalida"]))) && $r->habitacion_id == $_POST["datoHabitacion"])){
             $disponible = 0;
             header('Location: reservacion.php?mensaje=fechaigual');
         exit();

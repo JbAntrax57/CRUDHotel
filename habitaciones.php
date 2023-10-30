@@ -2,14 +2,14 @@
 <?php
     include_once "model/conexion.php";
     date_default_timezone_set('America/Mexico_City');
-    $sql = $bd -> query("select * from reservaciones order by idReservaciones asc");
+    $sql = $bd -> query("SELECT * FROM reservaciones WHERE CURDATE() BETWEEN fecha_llegada AND fecha_salida");
     $reservacion = $sql->fetchAll(PDO::FETCH_OBJ);
     
     foreach ($reservacion as $r) {
-        
-        if ($r->fecha_llegada <= date("Y-m-d") && $r->fecha_salida >= date("Y-m-d")){
+      $disponible = 0;  
+       /* if ($r->fecha_llegada <= date("Y-m-d") && $r->fecha_salida >= date("Y-m-d")){
             $disponible = 0;
-            //var_dump("dentro");
+            //var_dump($r->habitacion_id);
            // die();
             // var_dump($r->habitacion_id. ' '. $disponible );
             // var_dump($r->fecha_llegada. ' '. $r->fecha_salida );
@@ -19,9 +19,11 @@
             //var_dump($r->habitacion_id. ' '. $disponible);   
             //var_dump($r->fecha_llegada. ' '. $r->fecha_salida);
             //var_dump(date("Y-m-d"));
-        }
+        }*/
     $sentencia = $bd -> query("select * from habitaciones where id = $r->habitacion_id");
     $rom = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+
 
     $query = $bd->prepare("UPDATE habitaciones SET tipo_id = ?, nom_habitacion = ?, planta = ?, disponible = ? where id = ?;");
     $response = $query->execute([$rom[0]->tipo_id, $rom[0]->nom_habitacion, $rom[0]->planta, $disponible, $r->habitacion_id]);
@@ -57,6 +59,12 @@
                                     <p class="card-text texto-izq"><?php echo ($habitacion->planta === 0) ? 'Planta baja' : 'Planta alta'?></p>
                                     <p class="card-text texto-izq"><?php echo isset($habitacion->tem_alta) ? 'Temporada Alta: $' . $habitacion->tem_alta : 'Temporada Alta: $' . 0 ?></p>
                                     <p class="card-text texto-izq"><?php echo isset($habitacion->tem_baja) ? 'Temporada Baja: $' . $habitacion->tem_baja : 'Temporada Baja: $' . 0 ?></p>
+                                    <div class="row">
+                                        <div class="col-lg-12 text-right">
+                                            <!-- <a href="#" title="check"><i class="bi bi-bag-check-fill"></i></a> -->
+                                            <a href="reservacion.php?codigo=<?php echo $habitacion->hab_id; ?>" title="Reservar"><i class="bi bi-bag-check-fill"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -50,3 +50,25 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] { 
     -moz-appearance: textfield;
 }
+.pagination-link {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #fbf8f8;
+    background-color: rgb(202, 1, 135);
+    
+}
+a.pagination-link.prev {
+    background-color: rgb(202, 1, 135);
+    color: #fbf8f8;
+    border-color: #ccc;
+    
+}
+a.pagination-link.next {
+    background-color: rgb(202, 1, 135);
+    color: #fbf8f8;
+    border-color: #ccc;
+    
+}

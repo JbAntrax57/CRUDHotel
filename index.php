@@ -19,7 +19,8 @@ include 'template/header.php';
             <?php 
                 }
             ?>
+            <br><br><br>
     <div class="container">
-  <img src="img/login.jpg" style="height: 50%; width: 100%!important;" class="img-fluid">
-</div>
+    <img src="img/logohotel.png" alt="logo" style="height: 40%; width: 40%; margin-left: 28%;">
+  </div>
 <?php include 'template/footer.php' ?>
