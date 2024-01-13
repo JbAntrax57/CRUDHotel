@@ -2,16 +2,34 @@
 
 <?php
     include_once "model/conexion.php";
+    $data = getAll($bd);
+    
+    $reservacion = $data["reservacion"];
+    $total_paginas = $data["total_paginas"];
+    $pagina_actual = $data["pagina_actual"];
+   function getAll ($bd){
+    $where='';
+    if(isset($_GET['fllegada']) && isset($_GET['fsalida'])){
+        $fsalida =  date('Y-m-d', strtotime($_GET['fsalida']));  
+        $fllegada =  date('Y-m-d', strtotime($_GET['fllegada']));  
+        $where.=" where reservaciones.fecha_llegada >= '$fllegada' and reservaciones.fecha_salida <= '$fsalida'";
+        
+    }
+    
     $registros_por_pagina = 10;
     $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
     $inicio = ($pagina_actual - 1) * $registros_por_pagina;
     $contador = $bd->query("select COUNT(*) as total from reservaciones JOIN habitaciones ON id = reservaciones.habitacion_id order by reservaciones.idReservaciones desc");
     $cantidad= $contador->fetch(PDO::FETCH_OBJ);
-    $sentencia = $bd->query("select reservaciones.*, habitaciones.nom_habitacion from reservaciones JOIN habitaciones ON id = reservaciones.habitacion_id order by reservaciones.idReservaciones desc LIMIT $inicio, $registros_por_pagina");
-    $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
-   
-    $total_paginas = ceil($cantidad->total / $registros_por_pagina);
+    $sentencia = $bd->query("select reservaciones.*, habitaciones.nom_habitacion from reservaciones JOIN habitaciones ON id = reservaciones.habitacion_id $where order by reservaciones.idReservaciones desc LIMIT $inicio, $registros_por_pagina");
     
+    $reservacion = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $total_paginas = ceil($cantidad->total / $registros_por_pagina);
+    return ["reservacion"=>$reservacion,"total_paginas"=>$total_paginas,"pagina_actual"=>$pagina_actual];
+ }
+ function dateFilter (){
+    
+ }
 ?>
 
 <head>
@@ -141,9 +159,33 @@
             <button class="btn btn-success float-right" onclick="location='excel.php'"><i
                     class="bi bi-file-earmark-excel"></i></button>
             <br><br>
-            <div class="mt-2">
+         
+            <form method="POST" action="filtrar.php">
+            <div class="mt-2">          
+            <div class="col-sm-12 input-group mt-3 d-flex ">
+            <div class="col-sm-2">
+                
+                            <label class="form-label">Fecha Llegada: </label>
+                            <input type="date" class="form-control" name="filterFechaLlegada" autofocus required>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="form-label">Fecha Salida: </label>
+                            <input type="date" class="form-control" name="filterFechaSalida" autofocus required>
+
+                        </div>
+                        <div class="col-sm-2" style="margin-top: 2.8%;margin-left:0.5%">
+                      <button class="btn btn-primary" onclick="location='vista.php'"><i class="bi bi-search"></i></button>
+            <input type="submit" class="btn btn-primary" value="Registrar">
+                   
+
+
+                    </div>
+                        </div>
+                        
+                </form>
                 <div class="table_title rounded p-2">LISTA DE RESERVACIONES</div>
                 <div class="mx-auto">
+                
                     <!-- <table class="table align-middle table-responsive-xl"> -->
                     <div class="table-responsive">
                         <table class="table table-striped  table-hover table-borderless">

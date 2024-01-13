@@ -39,11 +39,70 @@
 ?>
 <head>
 <link rel="stylesheet" href="css/styleRooms.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <div class="container" style="margin-top: 5%;">
     <div class="row mt-5">
         <div class="col-lg-12 text-center">
             <div class="row">
+
+
+
+
+
+
+
+
+<!-- El modal -->
+<div class="modal" id="miModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        
+            <!-- Encabezado del modal -->
+            <div class="modal-header">
+                <h4 class="modal-title">Toallas Extras</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Contenido del modal -->
+            <div class="modal-body">
+                <p>Seleccione la cantidad:</p>
+                <select class="form-select"  name="registros" id="">
+      <option value="" selected disabled ="true" >Cantidad de Toallas</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+
+
+
+      </select>
+            </div>
+            
+            <!-- Pie del modal -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Agregar el enlace al JS de Bootstrap y jQuery (necesario para el funcionamiento de Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+
+            
+
+            
                 <!-- CÓDIGO DE LOS CARDS PARA LAS HABITACIONES -->
                 <!-- CARD PARA LA HABITACIÓN NO DISPOBIBLE -->
                 <?php foreach ($habitaciones as $habitacion) { ?>
@@ -63,6 +122,8 @@
                                         <div class="col-lg-12 text-right">
                                             <!-- <a href="#" title="check"><i class="bi bi-bag-check-fill"></i></a> -->
                                             <a href="reservacion.php?codigo=<?php echo $habitacion->hab_id; ?>" title="Reservar"><i class="bi bi-bag-check-fill"></i></a>
+                                            
+                                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#miModal"><span class="material-symbols-outlined">dry_cleaning</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +147,7 @@
                                         <div class="col-lg-12 text-right">
                                             <!-- <a href="#" title="check"><i class="bi bi-bag-check-fill"></i></a> -->
                                             <a href="reservacion.php?codigo=<?php echo $habitacion->hab_id; ?>" title="Reservar"><i class="bi bi-bag-check-fill"></i></a>
-                                        </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

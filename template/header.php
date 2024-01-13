@@ -34,7 +34,11 @@
     </button>
     <div class="offcanvas offcanvas-start bg_menu text-bg-primary" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: white;">Bienvenido...</h5>
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: white;">Bienvenido <?php 
+    
+    echo $_SESSION["usuario"];
+
+    ?></h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         <!--<li><a class="nav-link"><?//= $user['nombre']; ?></a></li>-->
       </div>
@@ -106,12 +110,16 @@ if($_SESSION['rol']!='usuario'){
 <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="sesionOut.php"><i class="bi bi-power"></i>&nbsp;&nbsp;&nbsp;Cerrar Sesion</a>
           </li>
-       
+          
         </ul>
         
       </div>
+    
     </div>
+  
+
     <img src="img/logohotel.png" alt="logo" style="height: 5%; width: 5%; margin-right: 3%;">
+  
   </div>
 </nav>
 
